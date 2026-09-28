@@ -3,4 +3,5 @@
 .ask-input #ai-button{background:#087b73;white-space:nowrap}
 .ask-input #ai-button:hover{background:#06665f}
 @media(max-width:720px){.ask-input #ai-button{width:100%}}
+.topbar-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}.creator-entry{display:inline-block;padding:10px 14px;border:1px solid #bdcce0;border-radius:10px;color:#173a57;background:#fff;text-decoration:none;font-size:.85rem;font-weight:800;white-space:nowrap}.creator-entry:hover{background:#e8f2f8}.content-warning{border-left:4px solid #dc9339;background:#fff4df;color:#634217;padding:10px 14px;border-radius:8px;margin:0 0 16px}
 .prompt-preview{display:block;width:100%;min-height:220px;resize:vertical;border:1px solid #c6d7e2;border-radius:10px;background:#f8fbfd;color:#29445f;padding:12px;font:inherit;line-height:1.55}
