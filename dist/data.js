@@ -27,10 +27,11 @@ window.COURSES = {
   },
   CEA201: {
     name: 'Tổ chức và kiến trúc máy tính', en: 'Computer Organization and Architecture', accent:'#db7c33',
-    scope:'13 cụm chương theo syllabus; 7 chương slide bổ trợ',
-    sourceNote:'Đã lập chỉ mục 21 bộ slide (863 trang). Mô tả syllabus đang áp dụng trên bản tra cứu SyllaBase liệt kê 13 cụm chương; các chương 4, 10, 11, 12, 14, 15, 19 trong gói slide được đánh dấu bổ trợ vì không có tên riêng trong danh sách này.',
-    sourceLink:'https://syllabase.online/subject/CEA201',
-    supplementalNumbers:[4,10,11,12,14,15,19],
+    scope:'13 cụm chương trong mô tả FLM; 21 chủ đề từ slide, 2 mục nền tảng bổ trợ',
+    sourceNote:'Đã đối chiếu syllabus CEA201 chính thức trên FLM (ID 13245, duyệt 22/08/2025): 3 tín chỉ, 10 CLO. Đã lập chỉ mục 21 bộ slide (863 trang) trên máy. CLO6 xác nhận logic số, CLO7 xác nhận chế độ địa chỉ; mô tả môn có assembly và biểu diễn số thực. Hệ đếm và điều khiển vi chương trình trong slide được đánh dấu bổ trợ vì không có mục riêng trong syllabus đã đối chiếu.',
+    sourceLink:'https://flm.fpt.edu.vn/gui/role/student/SyllabusDetails?sylID=13245',
+    assessmentNote:'Điểm: 2 phần Assignment 20%, 4 phần Exercises 40%, thi cuối kỳ 40% (60 phút, 50 câu trắc nghiệm). Syllabus yêu cầu dự ít nhất 80% số buổi để được thi cuối kỳ; điểm trung bình tối thiểu 5 và tiêu chí hoàn thành bài thi cuối kỳ là 4. Assignment có thể là báo cáo, mô hình máy tính đơn giản hoặc chương trình assembly; bài Exercises theo câu hỏi và yêu cầu của giảng viên.',
+    supplementalNumbers:[10,19],
     groups:[
       {name:'Nền tảng & hiệu năng',items:[
         row('1. Khái niệm và tiến hóa','Architecture mô tả hành vi nhìn thấy bởi lập trình viên; organization nói cách phần cứng hiện thực nó.','Bốn chức năng máy tính: xử lý, lưu trữ, di chuyển dữ liệu và điều khiển. CPU, bộ nhớ, I/O và liên kết hệ thống tạo cấu trúc mức cao.','CPU = control unit + ALU + registers','Cùng ISA vẫn có thể có các đời CPU với tổ chức bên trong khác nhau.','CH01-COA11e.pptx'),
@@ -39,7 +40,7 @@ window.COURSES = {
       ]},
       {name:'Bộ nhớ & I/O',items:[
         row('4. Phân cấp bộ nhớ','Bộ nhớ nhanh nhỏ ở gần CPU; bộ nhớ chậm lớn ở xa.','Tính cục bộ thời gian là dùng lại dữ liệu gần đây; cục bộ không gian là truy cập địa chỉ gần nhau. Đây là cơ sở hiệu quả của cache.','register → cache → RAM → storage','Duyệt mảng tuần tự thường tận dụng locality tốt.','CH04-COA11e.pptx'),
-        row('5. Cache','Cache giữ bản sao block từ RAM để giảm thời gian truy cập trung bình.','Hiểu hit/miss, ánh xạ trực tiếp/liên kết, thay thế và chính sách ghi. Chú ý miss penalty khi phân tích hiệu năng.','AMAT = hit time + miss rate × miss penalty','Miss rate thấp vẫn tốn thời gian nếu miss penalty rất lớn.','CH05-COA11e.pptx'),
+        row('5. Cache','Cache giữ bản sao block từ RAM để giảm thời gian truy cập trung bình.','Hiểu hit/miss, ánh xạ trực tiếp/liên kết, thay thế và chính sách ghi. Chú ý miss penalty khi phân tích hiệu năng; thử mô phỏng cache để quan sát tác động của block size và chính sách ánh xạ.','AMAT = hit time + miss rate × miss penalty','Miss rate thấp vẫn tốn thời gian nếu miss penalty rất lớn.','CH05-COA11e.pptx; FLM CLO4, CLO10'),
         row('6. Bộ nhớ trong','RAM là nơi làm việc chính; ROM và các công nghệ chip có vai trò khác.','So sánh SRAM và DRAM, tổ chức ô nhớ, độ rộng dữ liệu, ECC và cách ghép module bộ nhớ.','capacity = số địa chỉ × số bit/địa chỉ','SRAM thường làm cache; DRAM thường làm RAM chính.','CH06-COA11e.pptx'),
         row('7. Bộ nhớ ngoài','Lưu trữ ngoài giữ dữ liệu lâu dài với dung lượng lớn.','Nhận diện disk, SSD, optical/tape; đánh giá thời gian truy cập, tốc độ truyền, độ bền và cơ chế lưu trữ.','access time ≈ seek + rotation + transfer (HDD)','Đọc ngẫu nhiên HDD tốn thời gian tìm vị trí hơn đọc tuần tự.','CH07-COA11e.pptx'),
         row('8. Vào/ra','I/O kết nối CPU và bộ nhớ với thiết bị ngoại vi.','Các cách điều khiển: programmed I/O, interrupt-driven I/O và DMA. Phân biệt vai trò controller, buffer và bus.','DMA chuyển dữ liệu mà CPU không phải chép từng byte','Truyền khối lớn phù hợp DMA.','CH08-COA11e.pptx'),
@@ -48,10 +49,10 @@ window.COURSES = {
       {name:'Biểu diễn & tập lệnh',items:[
         row('10. Hệ đếm','Mọi dữ liệu số cuối cùng được biểu diễn bằng bit.','Đổi giữa nhị phân, thập phân, thập lục phân; hiểu bit, byte và biểu diễn số có dấu.','1 hex digit = 4 bits','1111₂ = F₁₆ = 15₁₀.','CH10-COA11e.pptx'),
         row('11. Số học máy tính','Phép tính hữu hạn bit có tràn và sai số.','Bù hai cho số nguyên có dấu; cộng/trừ, nhân/chia nhị phân; floating point gồm sign, exponent và fraction.','2’s complement của x: đảo bit rồi cộng 1','Số thực nhị phân không biểu diễn chính xác mọi số thập phân.','CH11-COA11e.pptx'),
-        row('12. Logic số','Cổng logic và mạch tuần tự xây nên CPU.','Boolean algebra, bảng chân trị, tổ hợp, flip-flop và thanh ghi. Phân biệt mạch tổ hợp chỉ phụ thuộc đầu vào hiện tại với mạch tuần tự có trạng thái.','A XOR B = 1 khi A và B khác nhau','Full adder cộng hai bit và carry-in.','CH12-COA11e.pptx'),
+        row('12. Logic số','Cổng logic và mạch tuần tự xây nên CPU.','Boolean algebra, bảng chân trị, tổ hợp, flip-flop và thanh ghi. Phân biệt mạch tổ hợp chỉ phụ thuộc đầu vào hiện tại với mạch tuần tự có trạng thái. Đây là chuẩn đầu ra CLO6 của FLM, không phải phần học thêm tùy chọn.','A XOR B = 1 khi A và B khác nhau','Full adder cộng hai bit và carry-in.','CH12-COA11e.pptx; FLM CLO6'),
         row('13. Đặc điểm tập lệnh','ISA quy định lệnh, toán hạng và tác dụng nhìn thấy bởi phần mềm.','Phân tích kiểu toán hạng, loại thao tác, số địa chỉ và thiết kế tập lệnh.','opcode + operands','ADD có thể đọc hai thanh ghi và ghi kết quả vào thanh ghi đích.','CH13-COA11e.pptx'),
-        row('14. Địa chỉ hóa và định dạng lệnh','Addressing mode quyết định cách tìm toán hạng.','Immediate, direct, indirect, register, indexed/relative; độ dài lệnh và trường opcode ảnh hưởng mã hóa, hiệu năng.','effective address có thể = base + offset','Truy cập phần tử mảng thường dùng base + chỉ số dịch.','CH14-COA11e.pptx'),
-        row('15. Assembly','Assembly biểu diễn lệnh máy bằng ký hiệu dễ đọc.','Lắp ráp, nhãn, macro và liên hệ source code, object code, linker. Theo dõi thanh ghi và bộ nhớ khi đọc chương trình ngắn.','MOV / LOAD / STORE / BRANCH','Lệnh branch dựa trên cờ trạng thái để đổi luồng.','CH15-COA11e.pptx')
+        row('14. Địa chỉ hóa và định dạng lệnh','Addressing mode quyết định cách tìm toán hạng.','Immediate, direct, indirect, register, indexed/relative; độ dài lệnh và trường opcode ảnh hưởng mã hóa, hiệu năng. Đây là chuẩn đầu ra CLO7 của FLM.','effective address có thể = base + offset','Truy cập phần tử mảng thường dùng base + chỉ số dịch.','CH14-COA11e.pptx; FLM CLO7'),
+        row('15. Assembly','Assembly biểu diễn lệnh máy bằng ký hiệu dễ đọc.','Lắp ráp, nhãn, macro và liên hệ source code, object code, linker. Theo dõi thanh ghi và bộ nhớ khi đọc chương trình ngắn; có thể dùng trình mô phỏng MARIE để quan sát chu trình lệnh và trạng thái máy.','MOV / LOAD / STORE / BRANCH','Lệnh branch dựa trên cờ trạng thái để đổi luồng.','CH15-COA11e.pptx; FLM CLO10')
       ]},
       {name:'CPU & xử lý song song',items:[
         row('16. Cấu trúc CPU','Datapath vận chuyển và xử lý dữ liệu; control unit phát tín hiệu điều khiển.','Thanh ghi, ALU, pipeline và hazard giải thích cách CPU thực thi lệnh ở mức trong.','throughput pipeline khác latency của một lệnh','Pipeline có thể hoàn thành nhiều lệnh mỗi đơn vị thời gian.','CH16-COA11e.pptx'),
