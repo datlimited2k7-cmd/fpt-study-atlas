@@ -4,7 +4,11 @@ window.QUIZZES = {
     {q:'Đạo hàm của (3x²+1)⁵ là gì?',o:['5(3x²+1)⁴','30x(3x²+1)⁴','6x(3x²+1)⁵','15x²(3x²+1)⁴'],a:1,e:'Dùng quy tắc hàm hợp: đạo hàm lớp ngoài nhân đạo hàm 3x²+1.',s:'Tóm tắt MAE101, tr. 2'},
     {q:'Hàng [0 0 | 1] trong ma trận mở rộng nói gì?',o:['Hệ có một nghiệm','Hệ có vô số nghiệm','Hệ vô nghiệm','Hệ thuần nhất'],a:2,e:'Hàng này tương đương phương trình 0=1.',s:'Tóm tắt MAE101, tr. 4'},
     {q:'Khi nào ma trận vuông A có nghịch đảo?',o:['det(A)=0','det(A)≠0','Mọi phần tử A khác 0','A có nhiều hàng hơn cột'],a:1,e:'Định thức khác 0 là điều kiện tương đương để ma trận vuông khả nghịch.',s:'Tóm tắt MAE101, tr. 5'},
-    {q:'Theo định lý cơ bản của giải tích, ∫ₐᵇ f(x)dx bằng gì nếu F′=f?',o:['F(a)+F(b)','f(b)−f(a)','F(b)−F(a)','f′(b)−f′(a)'],a:2,e:'Lấy nguyên hàm F rồi tính giá trị ở cận trên trừ cận dưới.',s:'Tóm tắt MAE101, tr. 3–4'}
+    {q:'Theo định lý cơ bản của giải tích, ∫ₐᵇ f(x)dx bằng gì nếu F′=f?',o:['F(a)+F(b)','f(b)−f(a)','F(b)−F(a)','f′(b)−f′(a)'],a:2,e:'Lấy nguyên hàm F rồi tính giá trị ở cận trên trừ cận dưới.',s:'Tóm tắt MAE101, tr. 3–4'},
+    {q:'Định lý giá trị trung bình khẳng định điều gì với hàm liên tục trên [a,b] và khả vi trên (a,b)?',o:['Luôn có f(a)=f(b)','Có c trong (a,b) sao cho f′(c)=[f(b)−f(a)]/(b−a)','Hàm luôn tăng','f′(x)=0 với mọi x'],a:1,e:'Tồn tại một tiếp tuyến có độ dốc bằng độ dốc dây cung nối hai đầu mút.',s:'FLM MAE101, CLO3'},
+    {q:'Khi A là ma trận vuông khả nghịch, nghiệm duy nhất của Ax=b là?',o:['A+b','A⁻¹b','bA⁻¹','det(A)b'],a:1,e:'Nhân hai vế bên trái với A⁻¹ được x=A⁻¹b.',s:'FLM MAE101, CLO7'},
+    {q:'Với u,v khác 0, điều kiện nào cho biết chúng vuông góc?',o:['u×v=0','u·v=0','||u||=||v||','u+v=0'],a:1,e:'Tích vô hướng bằng ||u||||v||cosθ, nên bằng 0 khi góc là 90°.',s:'FLM MAE101, CLO8'},
+    {q:'Nếu A có 5 cột và rank(A)=3, nullity(A) bằng bao nhiêu?',o:['2','3','5','8'],a:0,e:'Định lý rank–nullity: rank + nullity = số cột, nên nullity=5−3=2.',s:'FLM MAE101, CLO9'}
   ],
   CEA201:[
     {q:'Bốn thành phần cấu trúc mức cao của máy tính gồm?',o:['CPU, RAM, I/O, liên kết hệ thống','CPU, compiler, IDE, I/O','Cache, SSD, HDD, OS','ALU, browser, mạng, ứng dụng'],a:0,e:'CPU xử lý, main memory lưu, I/O trao đổi với bên ngoài và interconnection nối chúng.',s:'CH01-COA11e.pptx'},
