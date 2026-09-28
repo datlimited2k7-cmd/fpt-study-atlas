@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111b2d">
+  <meta name="description" content="Bản đồ kiến thức và ôn tập MAE101, CEA201, PRF193, SDI101m theo tài liệu học kỳ 1.">
+  <title>Bản đồ học tập FPT · Kỳ 1</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111b2d'/%3E%3Cpath d='M15 32h13m8 0h13M32 15v13m0 8v13' stroke='%2358d6c8' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23f5b65b'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Chọn môn học">
+      <div class="brand"><div class="brand-mark">✳</div><div><strong>BẢN ĐỒ HỌC TẬP</strong><span>FPT · học kỳ 1</span></div></div>
+      <p class="aside-label">MÔN HỌC</p>
+      <div id="course-list" class="course-list"></div>
+      <div class="aside-foot"><strong>Đọc theo nguồn</strong><p>Mỗi ý chính có tên tài liệu gốc. Kiểm tra syllabus lớp khi ôn thi.</p></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><span class="eyebrow">HỆ THỐNG HÓA KIẾN THỨC</span><h1 id="course-title"></h1><p id="course-subtitle" class="subtitle"></p></div><div id="course-counter" class="counter"></div></header>
+      <nav class="tabs" aria-label="Chức năng học tập">
+        <button data-view="map" class="active">Bản đồ kiến thức</button>
+        <button data-view="learn">Học theo chương</button>
+        <button data-view="ask">Hỏi đáp</button>
+        <button data-view="quiz">Luyện tập</button>
+        <button data-view="sources">Nguồn & phạm vi</button>
+      </nav>
+      <section id="map-view" class="view active" aria-label="Bản đồ kiến thức">
+        <div class="section-head"><div><h2>Nhìn toàn cảnh</h2><p>Chọn một nút để xem ý chính, công thức và ví dụ.</p></div><span id="map-count" class="small-pill"></span></div>
+        <div class="map-layout"><div class="mindmap"><div id="map-root" class="map-root"></div><div id="map-groups" class="map-groups"></div></div><article id="map-detail" class="detail-card" aria-live="polite"></article></div>
+      </section>
+      <section id="learn-view" class="view" aria-label="Học theo chương"><div class="section-head"><div><h2>Học theo chương</h2><p>Đi từ khái niệm đến cách dùng, sau đó tự thử ví dụ.</p></div></div><div id="chapter-list" class="chapter-list"></div></section>
+      <section id="ask-view" class="view" aria-label="Hỏi đáp theo tài liệu"><div class="section-head"><div><h2>Trợ lý học tập</h2><p>Tra cứu các ý gần nhất trong bộ tài liệu đã lập chỉ mục. Câu trả lời luôn hiện nguồn.</p></div></div><div class="ask-layout"><div class="ask-box"><label for="question">Bạn đang vướng phần nào?</label><div class="ask-input"><input id="question" placeholder="Ví dụ: cache hit là gì, công thức điện dung…" autocomplete="off"><button id="ask-button">Tra cứu</button></div><div id="quick-questions" class="quick-questions"></div><div id="answer" class="answer" aria-live="polite"><p>Nhập câu hỏi để tìm trong kiến thức của môn đang chọn.</p></div></div><div class="ask-note"><strong>Muốn hỏi mô hình AI?</strong><p>Chưa có API key nên trang chưa gọi mô hình AI trực tiếp. Bạn có thể sao chép câu hỏi kèm ngữ cảnh tài liệu và dán vào ChatGPT.</p><button id="copy-prompt" class="secondary">Sao chép prompt cho ChatGPT</button></div></div></section>
+      <section id="quiz-view" class="view" aria-label="Luyện tập"><div class="section-head"><div><h2>Kiểm tra nhanh</h2><p>Câu hỏi tự luyện do tôi biên soạn từ các ý trong tài liệu, không phải đề thi của trường.</p></div><span id="quiz-progress" class="small-pill"></span></div><div id="quiz-card" class="quiz-card"></div></section>
+      <section id="sources-view" class="view" aria-label="Nguồn và phạm vi"><div class="section-head"><div><h2>Nguồn & giới hạn</h2><p>Phân biệt nội dung có tài liệu trên máy với phần còn cần xác nhận từ lớp học.</p></div></div><div id="source-content" class="source-content"></div></section>
+    </main>
+  </div>
+  <script src="data.js"></script>
+  <script src="quiz.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
