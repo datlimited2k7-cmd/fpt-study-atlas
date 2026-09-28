@@ -25,6 +25,11 @@ window.QUIZZES = {
     {q:'Mặt Gauss nào thuận lợi cho điện tích điểm?',o:['Mặt cầu đồng tâm','Hình hộp lệch tâm bất kỳ','Mặt phẳng hở','Đường tròn hở'],a:0,e:'Đối xứng cầu làm E cùng độ lớn trên mặt cầu đồng tâm.',s:'#4. Gauss Law.pptx'},
     {q:'Đơn vị của điện dung là?',o:['Ohm','Ampere','Farad','Tesla'],a:2,e:'Điện dung C=Q/V có đơn vị Coulomb/Volt, gọi là Farad.',s:'#6. Capacitance.pptx'},
     {q:'Với mạch RC, hằng số thời gian bằng?',o:['R/C','RC','C/R','1/(RC)'],a:1,e:'τ=RC; nó đặc trưng tốc độ nạp hoặc xả tụ.',s:'#8. Electric Circuit.pptx'},
-    {q:'Hạt mang điện bay song song với B chịu lực từ bằng?',o:['qvB','0','qB/v','v/B'],a:1,e:'F=qvB sinθ và θ=0 khi v song song B.',s:'#9. Magnetic Field.pptx'}
+    {q:'Hạt mang điện bay song song với B chịu lực từ bằng?',o:['qvB','0','qB/v','v/B'],a:1,e:'F=qvB sinθ và θ=0 khi v song song B.',s:'#9. Magnetic Field.pptx'},
+    {q:'Pha tạp donor vào silicon thường tạo loại bán dẫn nào?',o:['Loại n','Loại p','Chất cách điện hoàn toàn','Kim loại tinh khiết'],a:0,e:'Donor cung cấp electron; electron trở thành hạt tải đa số.',s:'Syllabus SDI101m, buổi 26; Streetman & Banerjee, ch. 3'},
+    {q:'Vùng nghèo của tiếp giáp p–n thường thay đổi thế nào khi phân cực ngược mạnh hơn?',o:['Hẹp lại','Rộng ra','Biến mất','Không đổi trong mọi trường hợp'],a:1,e:'Phân cực ngược làm tăng rào thế và mở rộng vùng nghèo.',s:'Syllabus SDI101m, buổi 31–34; Streetman & Banerjee, ch. 5'},
+    {q:'Điện áp nào điều khiển kênh của MOSFET?',o:['Gate–source','Chỉ điện áp trên điện trở tải','Điện áp pin CMOS','Điện áp tần số'],a:0,e:'Điện trường từ gate, so với source, chi phối sự hình thành kênh.',s:'Syllabus SDI101m, buổi 38–40; Streetman & Banerjee, ch. 6'},
+    {q:'Trong cổng đảo CMOS, cặp linh kiện điển hình là?',o:['Hai điện trở','Một pMOS và một nMOS','Một diode và một cuộn cảm','Hai tụ điện'],a:1,e:'CMOS dùng transistor kênh p và kênh n bổ sung nhau.',s:'Syllabus SDI101m, buổi 45–46; Streetman & Banerjee, ch. 9'},
+    {q:'Thiết bị nào chủ yếu chuyển ánh sáng thành tín hiệu điện?',o:['LED','Photodiode','Cuộn cảm','Điện trở thuần'],a:1,e:'Photodiode tạo dòng quang khi hấp thụ photon.',s:'Syllabus SDI101m, buổi 43–44; Streetman & Banerjee, ch. 8'}
   ]
 };

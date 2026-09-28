@@ -26,9 +26,10 @@ window.COURSES = {
   },
   CEA201: {
     name: 'Tổ chức và kiến trúc máy tính', en: 'Computer Organization and Architecture', accent:'#db7c33',
-    scope:'21 chương trong bộ slide COA 11th Edition đang có trên máy',
-    sourceNote:'Đã lập chỉ mục đủ 21 bộ slide (863 trang). Bộ slide là tài liệu học, chưa chứng minh tất cả chương đều nằm trong đề thi của lớp hiện tại.',
-    sourceLink:'https://flm.fpt.edu.vn/login',
+    scope:'13 cụm chương theo syllabus; 7 chương slide bổ trợ',
+    sourceNote:'Đã lập chỉ mục 21 bộ slide (863 trang). Mô tả syllabus đang áp dụng trên bản tra cứu SyllaBase liệt kê 13 cụm chương; các chương 4, 10, 11, 12, 14, 15, 19 trong gói slide được đánh dấu bổ trợ vì không có tên riêng trong danh sách này.',
+    sourceLink:'https://syllabase.online/subject/CEA201',
+    supplementalNumbers:[4,10,11,12,14,15,19],
     groups:[
       {name:'Nền tảng & hiệu năng',items:[
         row('1. Khái niệm và tiến hóa','Architecture mô tả hành vi nhìn thấy bởi lập trình viên; organization nói cách phần cứng hiện thực nó.','Bốn chức năng máy tính: xử lý, lưu trữ, di chuyển dữ liệu và điều khiển. CPU, bộ nhớ, I/O và liên kết hệ thống tạo cấu trúc mức cao.','CPU = control unit + ALU + registers','Cùng ISA vẫn có thể có các đời CPU với tổ chức bên trong khác nhau.','CH01-COA11e.pptx'),
@@ -64,8 +65,8 @@ window.COURSES = {
   PRF193: {
     name:'Cơ sở lập trình C/C++', en:'Programming Fundamentals', accent:'#1c9a94',
     scope:'7 bộ slide và 657 trang đang có trên máy',
-    sourceNote:'Theo slide PRF193 trong Downloads/Desktop. Nội dung gồm cả C, C++ và các chủ đề nâng cao; mức độ kiểm tra từng phần cần xác nhận bằng syllabus của lớp.',
-    sourceLink:'https://cmshn.fpt.edu.vn/course/search.php?perpage=all&search=PRF192',
+    sourceNote:'Theo slide PRF193 trong Downloads/Desktop và mô tả syllabus đang áp dụng trên SyllaBase. Syllabus xác nhận C/C++ từ cơ bản, OOP đến STL, file/stream, exception, template, multithread và smart pointer. Lịch kiểm tra đúng lớp vẫn cần đối chiếu FLM.',
+    sourceLink:'https://syllabase.online/subject/PRF193',
     groups:[
       {name:'Từ chương trình đầu tiên',items:[
         row('1. Giới thiệu & môi trường','Chương trình biến thuật toán thành lệnh máy thông qua compiler.','Cài trình biên dịch/IDE, tạo chương trình, hiểu entry point, header, hàm main, input/output, lỗi cú pháp và lỗi logic.','source → compile → executable','Thiếu dấu ; có thể làm compile thất bại trước khi chạy.','[PRF193]-1.Introduction & Setup (1).pptx'),
@@ -78,15 +79,15 @@ window.COURSES = {
       ]},
       {name:'C++ mở rộng',items:[
         row('6. Lập trình hướng đối tượng','Class kết hợp dữ liệu và hành vi trong một kiểu tự định nghĩa.','Object, constructor/destructor, encapsulation, inheritance, virtual function và polymorphism. Hiểu copy khi class sở hữu tài nguyên động.','class → object; virtual → dynamic dispatch','Một hàm draw() ảo có thể hoạt động khác nhau ở các lớp con.','[PRF193]-6.Object-Oriented Programming (OOP).pptx'),
-        row('7. STL, file và thread','Thư viện chuẩn giúp dùng container và thuật toán đã có.','vector/map/set, iterator, sort; stream đọc ghi file; thread, join, mutex và data race. Chỉ dùng đa luồng khi bài toán cần.','vector tự đổi kích thước khi push_back','Ghi file xong cần kiểm tra trạng thái stream, tránh tưởng dữ liệu đã lưu.','[PRF193]-7. Advanced Topics.pptx')
+        row('7. STL, file và thread','Thư viện chuẩn giúp dùng container và thuật toán đã có.','vector/map/set, iterator, sort; stream đọc ghi file; exception, template, smart pointer; thread, join, mutex và data race. Chỉ dùng đa luồng khi bài toán cần.','vector tự đổi kích thước khi push_back','Ghi file xong cần kiểm tra trạng thái stream, tránh tưởng dữ liệu đã lưu.','[PRF193]-7. Advanced Topics.pptx; syllabus PRF193')
       ]}
     ]
   },
   SDI101m: {
     name:'Nhập môn thiết bị bán dẫn', en:'Introduction to Semiconductor Devices', accent:'#cc4f7c',
-    scope:'11 bộ slide đang có trên máy, chủ yếu là điện từ học nền tảng',
-    sourceNote:'Bộ slide hiện có dừng ở sóng điện từ, chưa có slide riêng về tiếp giáp p–n, diode hay transistor. Những phần thiết bị bán dẫn phải bổ sung từ syllabus/lab của lớp trước khi xem là đủ môn.',
-    sourceLink:'https://flm.fpt.edu.vn/login',
+    scope:'2 phần theo syllabus: điện từ học và thiết bị bán dẫn',
+    sourceNote:'Syllabus công khai trên SyllaBase xác nhận 60 buổi: điện từ học (buổi 1–21), thiết bị bán dẫn (22–50), bài tập/kiểm tra/lab (51–60). Trên máy mới có 11 bộ slide cho phần đầu; phần bán dẫn dưới đây bám lịch học và sách chính, chưa đối chiếu slide 12–28.',
+    sourceLink:'https://syllabase.online/subject/SDI101m',
     groups:[
       {name:'Điện trường',items:[
         row('1. Đo lường và đơn vị','Mọi công thức vật lý cần đúng đại lượng và đơn vị SI.','Đổi đơn vị, chữ số có nghĩa, vectơ và phép đo; đọc sơ đồ đại lượng trước khi thay số.','1 μC = 10⁻⁶ C','Sai cm↔m tạo sai số 100 lần ở độ dài.','#1. Course Introduction _ Measurement.pptx'),
@@ -101,7 +102,33 @@ window.COURSES = {
         row('8. Mạch điện','Kirchhoff dùng bảo toàn điện tích và năng lượng để giải mạch.','Nguồn suất điện động, điện trở nối tiếp/song song, quy tắc nút/vòng và quá trình nạp xả RC.','τ=RC','Sau một τ khi nạp, tụ đạt khoảng 63% điện áp cuối.','#8. Electric Circuit.pptx'),
         row('9. Từ trường','Dòng điện tạo từ trường, từ trường tác dụng lực lên điện tích chuyển động.','Quy tắc bàn tay phải, lực Lorentz, từ trường dây dẫn và vòng dây.','F=qv×B','Hạt bay song song với B có lực từ bằng 0.','#9. Magnetic Field.pptx'),
         row('10. Cảm ứng & dòng xoay chiều','Từ thông biến thiên tạo suất điện động cảm ứng.','Faraday–Lenz, độ tự cảm, phần tử RLC, pha và cộng hưởng trong mạch AC.','ε=−dΦB/dt','Dấu trừ Lenz cho biết dòng cảm ứng chống lại thay đổi từ thông.','#10. Inductance and Alternating Current.pptx'),
-        row('11. Sóng điện từ','Điện trường và từ trường biến thiên lan truyền thành sóng.','Liên hệ bước sóng, tần số, vận tốc; phổ điện từ và năng lượng truyền đi.','c=λf','Tần số tăng thì bước sóng giảm nếu vận tốc không đổi.','#11. Electromagnetic Wave.pptx')
+        row('11. Sóng điện từ','Điện trường và từ trường biến thiên lan truyền thành sóng.','Liên hệ bước sóng, tần số, vận tốc; phổ điện từ và năng lượng truyền đi.','c=λf','Tần số tăng thì bước sóng giảm nếu vận tốc không đổi.','#11. Electromagnetic Wave.pptx'),
+        row('Lab 1. Mạch RLC','Đo đáp ứng của mạch có điện trở, cuộn cảm và tụ.','Lịch học dành sáu buổi cho Lab 1. Khi làm thí nghiệm cần ghi sơ đồ, giá trị linh kiện, tần số nguồn, điện áp đo và sai số, rồi so sánh với mô hình lý thuyết.','Z_R=R; X_L=ωL; X_C=1/(ωC)','Ở cộng hưởng lý tưởng, cảm kháng và dung kháng triệt tiêu nhau.','Syllabus SDI101m, buổi 16–21; lab tutorial chưa có trên máy')
+      ]},
+      {name:'Vật liệu bán dẫn · syllabus',items:[
+        row('12. Ngành bán dẫn & cấu trúc tinh thể','Thiết bị bán dẫn được tạo trên vật liệu có mạng tinh thể và tính chất điện điều chỉnh được.','Lịch học bắt đầu phần hai bằng tổng quan ngành và tính chất tinh thể. Liên kết nguyên tử, sai hỏng và cấu trúc vật liệu ảnh hưởng đường đi của hạt tải.','Tinh thể: cấu trúc lặp lại có trật tự','Silicon tinh thể là nền phổ biến để chế tạo vi mạch.','Syllabus SDI101m, buổi 22–23; Streetman & Banerjee, ch. 1'),
+        row('13. Nguyên tử, electron & phương trình Schrödinger','Mô hình lượng tử giải thích các mức năng lượng electron trong vật liệu.','Electron không chỉ được mô tả như hạt cổ điển; trạng thái cho phép và xác suất xuất hiện dẫn tới cách hiểu dải năng lượng trong tinh thể.','Trạng thái lượng tử có năng lượng rời rạc trong hệ bị giam giữ','Một electron chỉ chiếm các trạng thái được phép, không nhận mọi mức năng lượng tùy ý.','Syllabus SDI101m, buổi 24; Streetman & Banerjee, ch. 2'),
+        row('14. Dải năng lượng','Khoảng cấm năng lượng phân biệt chất dẫn, bán dẫn và cách điện.','Dải hóa trị và dải dẫn được ngăn bởi band gap Eg. Nhiệt hoặc photon có thể kích electron qua khoảng cấm, tạo electron và lỗ trống.','Photon kích thích khi năng lượng phù hợp với Eg','Silicon có độ dẫn thay đổi mạnh khi nhiệt độ hoặc pha tạp thay đổi.','Syllabus SDI101m, buổi 25; Streetman & Banerjee, ch. 3'),
+        row('15. Bán dẫn tinh khiết & pha tạp','Pha tạp thay đổi hạt tải chiếm ưu thế.','Bán dẫn intrinsic có electron và lỗ trống do kích thích nhiệt; donor tạo loại n, acceptor tạo loại p. Vật liệu vẫn gần trung hòa điện về tổng thể.','n-type: electron đa số; p-type: lỗ trống đa số','Thêm donor vào silicon làm mật độ electron tăng.','Syllabus SDI101m, buổi 26; Streetman & Banerjee, ch. 3'),
+        row('16. Nồng độ hạt tải','Mật độ electron và lỗ trống quyết định độ dẫn.','Xét cân bằng nhiệt, mức Fermi và ảnh hưởng của pha tạp/nhiệt độ. Phân biệt hạt tải đa số với thiểu số khi phân tích dòng điện.','Ở cân bằng nhiệt: np=nᵢ²','Pha tạp n mạnh làm n tăng, p cân bằng giảm.','Syllabus SDI101m, buổi 27; Streetman & Banerjee, ch. 3'),
+        row('17. Trôi và khuếch tán','Hạt tải di chuyển vì điện trường hoặc vì chênh lệch nồng độ.','Drift do điện trường và độ linh động; diffusion do gradient nồng độ. Hai cơ chế cùng góp vào dòng trong tiếp giáp p–n.','v_d=μE trong miền gần tuyến tính','Electron khuếch tán từ vùng n đậm sang vùng ít electron.','Syllabus SDI101m, buổi 28 & 30; Streetman & Banerjee, ch. 3–4'),
+        row('18. Hấp thụ và phát quang','Photon có thể tạo cặp electron–lỗ trống; tái hợp có thể phát ánh sáng.','Hấp thụ quang và luminescence là nền của cảm biến quang và LED. Cần xét năng lượng photon so với band gap và cơ chế tái hợp.','E_photon=hν','Photodiode biến ánh sáng thành dòng điện đo được.','Syllabus SDI101m, buổi 29; Streetman & Banerjee, ch. 4')
+      ]},
+      {name:'Tiếp giáp & transistor · syllabus',items:[
+        row('19. Tiếp giáp p–n','Ghép vùng p và n tạo vùng nghèo và điện trường nội.','Hạt tải khuếch tán qua ranh giới rồi để lại ion pha tạp cố định. Điện trường vùng nghèo chống khuếch tán, tạo trạng thái cân bằng và thế chắn.','Cân bằng: dòng trôi và khuếch tán triệt tiêu','Vùng nghèo rộng hơn khi phân cực ngược.','Syllabus SDI101m, buổi 31–32; Streetman & Banerjee, ch. 5'),
+        row('20. Diode phân cực thuận/ngược','Điện áp ngoài thay đổi rào thế và dòng qua tiếp giáp.','Phân cực thuận hạ rào thế và tăng dòng; phân cực ngược tăng vùng nghèo, chỉ còn dòng rò nhỏ cho tới các cơ chế đánh thủng. Không coi diode thực là công tắc hoàn hảo.','I≈Iₛ(exp(V/(nVₜ))−1) theo mô hình lý tưởng','Diode chỉnh lưu cho dòng lớn chủ yếu theo một chiều.','Syllabus SDI101m, buổi 33–34; Streetman & Banerjee, ch. 5'),
+        row('21. Điện dung tiếp giáp','Vùng nghèo của p–n hoạt động giống một lớp cách điện giữa hai miền dẫn.','Điện dung vùng nghèo phụ thuộc điện áp phân cực; khi thuận còn có điện dung khuếch tán do hạt tải lưu trữ.','C_j=dQ/dV','Phân cực ngược mạnh thường làm điện dung vùng nghèo giảm.','Syllabus SDI101m, buổi 35; Streetman & Banerjee, ch. 5'),
+        row('22. Tiếp xúc kim loại–bán dẫn','Ranh giới kim loại và bán dẫn có thể tạo tiếp xúc chỉnh lưu hoặc ohmic.','Mức năng lượng và rào thế quyết định dòng qua tiếp xúc. Schottky diode và tiếp xúc điện cực đều xuất phát từ chủ đề này.','Schottky: rào thế tại tiếp xúc kim loại–bán dẫn','Tiếp xúc ohmic được thiết kế để dẫn tốt theo hai chiều.','Syllabus SDI101m, buổi 36; Streetman & Banerjee, ch. 5'),
+        row('23. JFET','Điện áp cổng làm thay đổi độ rộng kênh dẫn bằng vùng nghèo.','JFET là transistor điều khiển bằng điện trường tại tiếp giáp; cần phân biệt gate, source, drain và cơ chế pinch-off.','V_GS điều khiển độ rộng kênh','Đổi phân cực gate thay đổi dòng drain–source.','Syllabus SDI101m, buổi 37; Streetman & Banerjee, ch. 6'),
+        row('24. Tụ MOS và MOSFET','Cổng cách điện điều khiển điện tích và kênh dẫn dưới lớp oxide.','Tụ MOS có các trạng thái tích lũy, nghèo và đảo. MOSFET dùng điện áp gate–source để hình thành/điều khiển kênh giữa source và drain.','V_GS vượt ngưỡng V_T để tạo kênh tăng cường','N-MOS tăng cường dẫn khi gate đủ dương so với source.','Syllabus SDI101m, buổi 38–40; Streetman & Banerjee, ch. 6'),
+        row('25. BJT','Dòng trong transistor lưỡng cực liên quan cả electron và lỗ trống.','BJT có emitter, base, collector. Nắm phân cực các tiếp giáp, vùng hoạt động và cách dòng base nhỏ điều khiển dòng collector lớn hơn.','Trong vùng hoạt động: I_C≈βI_B','BJT có thể dùng như bộ khuếch đại hoặc công tắc.','Syllabus SDI101m, buổi 41–42; Streetman & Banerjee, ch. 7'),
+        row('26. Thiết bị quang điện','Thiết bị bán dẫn chuyển đổi giữa ánh sáng và điện.','LED phát quang khi hạt tải tái hợp; photodiode thu ánh sáng; pin mặt trời khai thác cặp electron–lỗ trống do photon tạo ra.','E_photon=hν','Cường độ sáng tăng thường làm photocurrent tăng trong vùng hoạt động phù hợp.','Syllabus SDI101m, buổi 43–44; Streetman & Banerjee, ch. 8')
+      ]},
+      {name:'Vi mạch & thực hành · syllabus',items:[
+        row('27. CMOS','CMOS ghép transistor n-channel và p-channel để tạo logic số.','Ở trạng thái ổn định lý tưởng, một mạng dẫn còn mạng kia ngắt nên công suất tĩnh thấp; khi chuyển mạch vẫn tiêu thụ năng lượng.','P_switch≈αCV²f','Cổng đảo CMOS dùng một pMOS và một nMOS.','Syllabus SDI101m, buổi 45–46; Streetman & Banerjee, ch. 9'),
+        row('28. Mạch tích hợp và bộ nhớ','Nhiều linh kiện trên cùng chip thực hiện logic hoặc lưu dữ liệu.','Lịch học có hai buổi về IC và memory. Phân biệt chức năng tính toán và lưu trữ; liên hệ ô nhớ với transistor và tụ trong các công nghệ khác nhau.','Ô nhớ phải có cơ chế ghi và đọc','DRAM cần làm tươi điện tích lưu trong ô.','Syllabus SDI101m, buổi 47–48; Streetman & Banerjee, ch. 9'),
+        row('29. Giới thiệu chip AI','Chip AI tối ưu một số phép tính lặp lại nhiều trong học máy.','Syllabus dành hai buổi giới thiệu. Tập trung hiểu song song hóa, luồng dữ liệu và vai trò của bộ nhớ; slide Lecture 28 chưa có trên máy nên chưa suy diễn kiến trúc cụ thể.','Hiệu năng phụ thuộc tính toán và băng thông bộ nhớ','Nhân ma trận là ví dụ phép toán thường được tăng tốc.','Syllabus SDI101m, buổi 49–50; Lecture 28 chưa có trên máy'),
+        row('Lab 2. Thiết bị bán dẫn','Lắp và đo đặc tuyến để nối lý thuyết với hành vi linh kiện.','Lịch học dành sáu buổi cho Lab 2. Cần có lab tutorial và linh kiện đúng lớp để kiểm tra sơ đồ, cách đo và báo cáo; hiện các tài liệu đó chưa có trên máy.','Ghi điều kiện đo, đơn vị và sai số','Đặc tuyến I–V cho thấy khác biệt giữa phân cực thuận và ngược của diode.','Syllabus SDI101m, buổi 55–60; lab tutorial chưa có trên máy')
       ]}
     ]
   }
