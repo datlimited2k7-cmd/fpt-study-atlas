@@ -4,8 +4,8 @@ window.COURSES = {
   MAE101: {
     name: 'Toán cho ngành kỹ thuật', en: 'Mathematics for Engineering', accent: '#5a58cc',
     scope: 'Giải tích một biến và đại số tuyến tính',
-    sourceNote: 'Dựa trên Tom_Tat_Calculus_LinearAlgebra.md/pdf trên máy và đối chiếu danh mục môn học do giảng viên FPT công bố. Chưa có bản syllabus FLM đúng lớp để xác nhận lịch kiểm tra.',
-    sourceLink: 'https://sites.google.com/site/thiminhphuongvu/enseignement-teaching/fpt-university',
+    sourceNote: 'Dựa trên Tom_Tat_Calculus_LinearAlgebra.md/pdf trên máy và đối chiếu mô tả MAE101 trong SyllaBase (trang độc lập tổng hợp dữ liệu FLM). Chưa có bản syllabus FLM đúng lớp để xác nhận lịch kiểm tra.',
+    sourceLink: 'https://syllabase.online/subject/MAE101',
     groups: [
       {name:'Giải tích', items:[
         row('Hàm số và đồ thị','Hàm gán mỗi đầu vào hợp lệ đúng một đầu ra.','Xác định miền xác định trước khi biến đổi; nhận diện hàm đa thức, hữu tỉ, lượng giác, mũ, log, hàm hợp và hàm ngược. Đọc tính chẵn lẻ, đơn điệu và biến đổi đồ thị.','f⁻¹(f(x)) = x trên miền thích hợp','Với f(x)=1/(x−2), x=2 bị loại khỏi miền xác định.','Tóm tắt MAE101, tr. 1'),
