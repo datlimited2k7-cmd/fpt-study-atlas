@@ -26,7 +26,9 @@ window.QUIZZES = {
     {q:'Chỉ số hợp lệ của mảng 10 phần tử là?',o:['1..10','0..10','0..9','−1..8'],a:2,e:'Mảng C/C++ bắt đầu tại 0, chỉ số cuối là kích thước trừ 1.',s:'[PRF193]-4. Data Handling.pptx'},
     {q:'Khác biệt chính giữa truyền giá trị và truyền tham chiếu?',o:['Truyền giá trị luôn nhanh hơn','Truyền tham chiếu có thể thay đổi biến gốc','Truyền tham chiếu tạo bản sao','Không có khác biệt'],a:1,e:'Tham số tham chiếu gắn với đối tượng được truyền vào.',s:'[PRF193]-5. Functions & Memory Management.pptx'},
     {q:'Từ khóa nào hỗ trợ dynamic dispatch trong C++?',o:['static','virtual','const','enum'],a:1,e:'Hàm virtual cho phép gọi phiên bản của lớp con qua con trỏ/tham chiếu lớp cha.',s:'[PRF193]-6.Object-Oriented Programming (OOP).pptx'},
-    {q:'Container nào trong STL có thể tự mở rộng như mảng động?',o:['vector','enum','struct','char[] cố định'],a:0,e:'std::vector quản lý kích thước và cấp phát khi thêm phần tử.',s:'[PRF193]-7. Advanced Topics.pptx'}
+    {q:'Container nào trong STL có thể tự mở rộng như mảng động?',o:['vector','enum','struct','char[] cố định'],a:0,e:'std::vector quản lý kích thước và cấp phát khi thêm phần tử.',s:'[PRF193]-7. Advanced Topics.pptx'},
+    {q:'Muốn đọc một bản ghi ở vị trí bất kỳ trong file nhị phân C++, thao tác nào phù hợp?',o:['Dịch con trỏ đọc bằng seekg','Chỉ gọi cout','Xóa toàn bộ file','Chỉ đổi tên biến'],a:0,e:'seekg đưa vị trí đọc đến offset cần thiết trước khi gọi read.',s:'FLM PRF193 ID 13190, CLO5; [PRF193]-7. Advanced Topics.pptx'},
+    {q:'Bước nào thuộc tư duy tính toán trước khi viết chương trình?',o:['Phân rã bài toán và mô hình hóa dữ liệu','Chỉ sao chép đáp án AI','Bỏ kiểm thử','Chạy chương trình khi chưa biên dịch'],a:0,e:'Phân rã và mô hình hóa giúp xác định đầu vào, đầu ra và các bước giải trước khi code; kết quả AI vẫn cần kiểm tra.',s:'FLM PRF193 ID 13190, CLO6'}
   ],
   SDI101m:[
     {q:'Khoảng cách hai điện tích điểm tăng gấp đôi thì lực Coulomb còn?',o:['1/2','1/4','2 lần','4 lần'],a:1,e:'Độ lớn lực tỉ lệ nghịch với bình phương khoảng cách.',s:'#2. Coulomb Law.pptx'},
@@ -38,6 +40,8 @@ window.QUIZZES = {
     {q:'Vùng nghèo của tiếp giáp p–n thường thay đổi thế nào khi phân cực ngược mạnh hơn?',o:['Hẹp lại','Rộng ra','Biến mất','Không đổi trong mọi trường hợp'],a:1,e:'Phân cực ngược làm tăng rào thế và mở rộng vùng nghèo.',s:'Syllabus SDI101m, buổi 31–34; Streetman & Banerjee, ch. 5'},
     {q:'Điện áp nào điều khiển kênh của MOSFET?',o:['Gate–source','Chỉ điện áp trên điện trở tải','Điện áp pin CMOS','Điện áp tần số'],a:0,e:'Điện trường từ gate, so với source, chi phối sự hình thành kênh.',s:'Syllabus SDI101m, buổi 38–40; Streetman & Banerjee, ch. 6'},
     {q:'Trong cổng đảo CMOS, cặp linh kiện điển hình là?',o:['Hai điện trở','Một pMOS và một nMOS','Một diode và một cuộn cảm','Hai tụ điện'],a:1,e:'CMOS dùng transistor kênh p và kênh n bổ sung nhau.',s:'Syllabus SDI101m, buổi 45–46; Streetman & Banerjee, ch. 9'},
-    {q:'Thiết bị nào chủ yếu chuyển ánh sáng thành tín hiệu điện?',o:['LED','Photodiode','Cuộn cảm','Điện trở thuần'],a:1,e:'Photodiode tạo dòng quang khi hấp thụ photon.',s:'Syllabus SDI101m, buổi 43–44; Streetman & Banerjee, ch. 8'}
+    {q:'Thiết bị nào chủ yếu chuyển ánh sáng thành tín hiệu điện?',o:['LED','Photodiode','Cuộn cảm','Điện trở thuần'],a:1,e:'Photodiode tạo dòng quang khi hấp thụ photon.',s:'Syllabus SDI101m, buổi 43–44; Streetman & Banerjee, ch. 8'},
+    {q:'Trước khi đổi dây nối trong bài lab RLC, thao tác an toàn nào cần làm?',o:['Ngắt nguồn điện','Tăng điện áp lên tối đa','Chạm tay vào cả hai cực nguồn','Bỏ qua sơ đồ mạch'],a:0,e:'Ngắt nguồn trước khi thay đổi sơ đồ kết nối giúp giảm rủi ro chập mạch và điện giật.',s:'FLM SDI101m ID 12239, CLO2; quy tắc an toàn điện cơ bản'},
+    {q:'Để kiểm chứng đặc tuyến của diode, dữ liệu nào cần đo ở nhiều mức phân cực?',o:['Cặp điện áp và dòng điện','Chỉ màu vỏ diode','Chỉ khối lượng diode','Tên của nhà sản xuất'],a:0,e:'Đo các cặp V–I rồi vẽ đồ thị cho thấy sự khác biệt giữa phân cực thuận và ngược.',s:'FLM SDI101m ID 12239, CLO4'}
   ]
 };

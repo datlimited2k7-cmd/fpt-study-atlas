@@ -67,8 +67,10 @@ window.COURSES = {
   PRF193: {
     name:'Cơ sở lập trình C/C++', en:'Programming Fundamentals', accent:'#1c9a94',
     scope:'7 bộ slide và 657 trang đang có trên máy',
-    sourceNote:'Theo slide PRF193 trong Downloads/Desktop và mô tả syllabus đang áp dụng trên SyllaBase. Syllabus xác nhận C/C++ từ cơ bản, OOP đến STL, file/stream, exception, template, multithread và smart pointer. Lịch kiểm tra đúng lớp vẫn cần đối chiếu FLM.',
-    sourceLink:'https://syllabase.online/subject/PRF193',
+    sourceNote:'Đã đối chiếu syllabus PRF193 chính thức trên FLM (ID 13190, duyệt 22/08/2025): 3 tín chỉ, 6 CLO. Nội dung gồm C/C++ cơ bản, cấu trúc điều khiển, hàm, OOP và quản lý bộ nhớ, file/stream, tư duy tính toán và công cụ AI. Bảy bộ slide trên máy còn mở rộng sang STL, template, exception và đa luồng.',
+    sourceLink:'https://flm.fpt.edu.vn/gui/role/student/SyllabusDetails?sylID=13190',
+    cloNote:'CLO1: cú pháp, kiểu, toán tử, chuỗi, mảng, con trỏ; CLO2: rẽ nhánh và vòng lặp; CLO3: hàm, đệ quy, function pointer và truyền tham số; CLO4: OOP, bộ nhớ động, smart pointer, template và exception; CLO5: file văn bản/nhị phân và truy cập ngẫu nhiên; CLO6: dùng công cụ AI và tư duy tính toán để phân tích, mô hình hóa, trình bày lời giải.',
+    assessmentNote:'Điểm: dự án cuối môn 20% (trình bày và hỏi đáp theo nhóm), 5 lab 20%, bài thi thực hành PE 30% (85 phút, 1–4 bài lập trình), 2 progress test 10%, bài thi lý thuyết TE 20% (60 phút, 50 câu trắc nghiệm/trả lời ngắn). PE và TE kiểm tra CLO1–5; dự án và lab bao gồm CLO6. Điểm trung bình tối thiểu 5; tiêu chí hoàn thành dự án và TE là 4, PE là 2. Cần dự ít nhất 80% giờ học để được thi cuối kỳ.',
     groups:[
       {name:'Từ chương trình đầu tiên',items:[
         row('1. Giới thiệu & môi trường','Chương trình biến thuật toán thành lệnh máy thông qua compiler.','Cài trình biên dịch/IDE, tạo chương trình, hiểu entry point, header, hàm main, input/output, lỗi cú pháp và lỗi logic.','source → compile → executable','Thiếu dấu ; có thể làm compile thất bại trước khi chạy.','[PRF193]-1.Introduction & Setup (1).pptx'),
@@ -88,8 +90,10 @@ window.COURSES = {
   SDI101m: {
     name:'Nhập môn thiết bị bán dẫn', en:'Introduction to Semiconductor Devices', accent:'#cc4f7c',
     scope:'2 phần theo syllabus: điện từ học và thiết bị bán dẫn',
-    sourceNote:'Syllabus công khai trên SyllaBase xác nhận 60 buổi: điện từ học (buổi 1–21), thiết bị bán dẫn (22–50), bài tập/kiểm tra/lab (51–60). Trên máy mới có 11 bộ slide cho phần đầu; phần bán dẫn dưới đây bám lịch học và sách chính, chưa đối chiếu slide 12–28.',
-    sourceLink:'https://syllabase.online/subject/SDI101m',
+    sourceNote:'Đã đối chiếu syllabus SDI101m chính thức trên FLM (ID 12239, duyệt 22/11/2024): 3 tín chỉ, 60 buổi, 4 CLO. Môn gồm điện từ học và cơ chế hoạt động của thiết bị bán dẫn. Trên máy mới có 11 bộ slide cho phần đầu; phần bán dẫn trong bản đồ dựa vào lịch học công khai và kiến thức nền, chưa có slide 12–28 để đối chiếu.',
+    sourceLink:'https://flm.fpt.edu.vn/gui/role/student/SyllabusDetails?sylID=12239',
+    cloNote:'CLO1: hiểu các khái niệm điện và điện tử nền tảng; CLO2: thực hành với linh kiện trong mạch RLC và tuân thủ an toàn điện; CLO3: hiểu bán dẫn, các loại thiết bị và nguyên lý hoạt động; CLO4: quan sát, kiểm chứng đặc tuyến hoạt động của thiết bị bán dẫn.',
+    assessmentNote:'Điểm: Assignment 1 và 2, mỗi bài 10%; Lab 1 và 2, mỗi lab 5%; Progress test 1 và 2, mỗi bài 15% (45 phút, 30 câu); thi cuối kỳ 40% (60 phút, 50 câu trắc nghiệm). Bài kiểm tra 1 tập trung CLO1, bài 2 tập trung CLO3; thi cuối kỳ bao phủ CLO1–4. Điểm trung bình tối thiểu 5; tiêu chí hoàn thành thi cuối kỳ là 4. Cần dự ít nhất 80% giờ học để được thi cuối kỳ.',
     groups:[
       {name:'Điện trường',items:[
         row('1. Đo lường và đơn vị','Mọi công thức vật lý cần đúng đại lượng và đơn vị SI.','Đổi đơn vị, chữ số có nghĩa, vectơ và phép đo; đọc sơ đồ đại lượng trước khi thay số.','1 μC = 10⁻⁶ C','Sai cm↔m tạo sai số 100 lần ở độ dài.','#1. Course Introduction _ Measurement.pptx'),
