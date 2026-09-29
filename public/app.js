@@ -1,6 +1,6 @@
 (function(){
   const courses=window.COURSES, quizzes=window.QUIZZES;
-  let courseCode='MAE101', view='map', selected=0, slideIndex=null, quizIndex=0, quizScore=0, quizAnswered=false;
+  let courseCode='MAE101', view='map', selected=0, slideIndex=null, quizIndex=0, quizAnswers=new Map(), quizPending=new Map();
   const $=s=>document.querySelector(s);
   const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const allItems=coursesKey=>courses[coursesKey].groups.flatMap((g,gi)=>g.items.map((item,ii)=>({...item,group:g.name,gi,ii})));
@@ -18,9 +18,55 @@
   function renderQuick(){const suggestions={MAE101:['Quy tắc đạo hàm hàm hợp','Ma trận khả nghịch khi nào?','Tích phân xác định là gì?'],CEA201:['Cache hit và miss là gì?','Chu trình fetch execute','Luật Amdahl dùng để làm gì?'],PRF193:['Mảng bắt đầu từ chỉ số mấy?','Truyền tham chiếu khác gì?','Virtual function là gì?'],SDI101m:['Định luật Coulomb','Tiếp giáp p–n hoạt động thế nào?','MOSFET khác BJT ra sao?']};$('#quick-questions').innerHTML=suggestions[courseCode].map(q=>`<button>${escapeHTML(q)}</button>`).join('');$('#quick-questions').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('#question').value=b.textContent;answerQuestion();});}
   async function loadSlides(){if(slideIndex)return slideIndex;try{const r=await fetch('slide-search.json');if(!r.ok)throw Error('unavailable');slideIndex=await r.json();return slideIndex;}catch{slideIndex=[];return slideIndex;}}
   async function answerQuestion(){const q=$('#question').value.trim();if(!q){$('#answer').innerHTML='<p>Hãy nhập câu hỏi trước.</p>';return;}$('#answer').innerHTML='<p>Đang tìm trong tài liệu…</p>';const chapters=allItems(courseCode).map(i=>({item:i,score:score(q,i.title,3)+score(q,i.idea,2)+score(q,i.details+' '+i.key+' '+i.example)})).sort((a,b)=>b.score-a.score);const slides=(await loadSlides()).filter(s=>s.course===courseCode).map(s=>({...s,score:score(q,s.text+' '+s.deck)})).sort((a,b)=>b.score-a.score);const best=chapters[0],related=chapters.filter(x=>x.score>0).slice(0,2),slideMatches=slides.filter(x=>x.score>0).slice(0,3);if((best?.score||0)<2 && !slideMatches.length){$('#answer').innerHTML='<h3>Chưa tìm được căn cứ đủ gần</h3><p>Thử nêu tên khái niệm, công thức hoặc chương. Tôi sẽ không đoán khi tài liệu không có nội dung phù hợp.</p>';return;}let html='<h3>Gợi ý từ tài liệu</h3>';if(related.length){html+=related.map(({item})=>`<div class="match"><strong>${escapeHTML(item.title)}</strong><p>${escapeHTML(item.idea)} ${escapeHTML(item.details)}</p><p><b>Điểm cần nhớ:</b> ${escapeHTML(item.key)}</p><p><b>Ví dụ:</b> ${escapeHTML(item.example)}</p><span class="citation">${escapeHTML(item.source)}</span></div>`).join('');}if(slideMatches.length){html+='<p class="muted">Slide gần với câu hỏi:</p><ul>'+slideMatches.map(s=>`<li>${escapeHTML(s.deck)}, slide ${s.slide}: ${escapeHTML(s.text.slice(0,180))}</li>`).join('')+'</ul>';}html+='<p class="muted">Đây là kết quả tìm kiếm và tóm lược theo tài liệu, không phải câu trả lời do mô hình AI tạo.</p>';$('#answer').innerHTML=html;}
-  function renderQuiz(){const set=quizzes[courseCode],q=set[quizIndex];$('#quiz-progress').textContent=`${quizIndex+1}/${set.length} · Đúng ${quizScore}`;$('#quiz-card').innerHTML=`<span class="question-number">CÂU ${quizIndex+1} / ${set.length}</span><h3>${escapeHTML(q.q)}</h3><div class="options">${q.o.map((x,i)=>`<button class="option" data-opt="${i}">${escapeHTML(x)}</button>`).join('')}</div><div id="quiz-feedback"></div><div class="quiz-actions"><button id="quiz-next" style="display:none">${quizIndex===set.length-1?'Xem kết quả':'Câu tiếp theo'}</button><button id="quiz-restart" class="secondary">Làm lại</button></div>`;quizAnswered=false;document.querySelectorAll('.option').forEach(b=>b.onclick=()=>chooseAnswer(Number(b.dataset.opt)));$('#quiz-next').onclick=()=>{if(quizIndex<set.length-1){quizIndex++;renderQuiz();}else{$('#quiz-card').innerHTML=`<h3>Hoàn thành ${set.length} câu</h3><p>Bạn đúng <strong>${quizScore}/${set.length}</strong>. Hãy xem lại các giải thích và nguồn khi cần.</p><button id="quiz-again" class="secondary">Làm lại</button>`;$('#quiz-again').onclick=resetQuiz;}};$('#quiz-restart').onclick=resetQuiz;}
-  function chooseAnswer(i){if(quizAnswered)return;quizAnswered=true;const q=quizzes[courseCode][quizIndex];if(i===q.a)quizScore++;document.querySelectorAll('.option').forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('correct');else if(j===i)b.classList.add('wrong');});$('#quiz-feedback').innerHTML=`<div class="quiz-feedback"><strong>${i===q.a?'Chính xác':'Chưa đúng'}</strong><br>${escapeHTML(q.e)}<br><span class="citation">Nguồn: ${escapeHTML(q.s)}</span></div>`;$('#quiz-next').style.display='inline-block';$('#quiz-progress').textContent=`${quizIndex+1}/${quizzes[courseCode].length} · Đúng ${quizScore}`;}
-  function resetQuiz(){quizIndex=0;quizScore=0;renderQuiz();}
+  function correctIndices(question){return Array.isArray(question.a)?question.a:[question.a];}
+  function sameAnswers(left,right){return left.length===right.length&&left.every(index=>right.includes(index));}
+  function quizScore(){return [...quizAnswers].filter(([index,answer])=>sameAnswers(correctIndices(quizzes[courseCode][index]),answer)).length;}
+  function renderQuizChapters(){
+    const chapters=[...new Set(quizzes[courseCode].map(question=>question.chapter).filter(Boolean))];
+    $('#quiz-chapter-label').hidden=!chapters.length;
+    $('#quiz-chapter').innerHTML=`<option value="">Chọn chương</option>${chapters.map(chapter=>`<option value="${escapeHTML(chapter)}">${escapeHTML(chapter)}</option>`).join('')}`;
+  }
+  function renderQuiz(){
+    const set=quizzes[courseCode],q=set[quizIndex],answer=quizAnswers.get(quizIndex),correct=correctIndices(q),multi=Array.isArray(q.a);
+    const pending=quizPending.get(quizIndex)||new Set();
+    $('#quiz-progress').textContent=`Câu ${quizIndex+1}/${set.length} · Đã làm ${quizAnswers.size} · Đúng ${quizScore()}`;
+    $('#quiz-chapter').value=q.chapter||'';
+    $('#quiz-jump').max=String(set.length);
+    $('#quiz-jump').value=String(quizIndex+1);
+    $('#quiz-prev').disabled=quizIndex===0;
+    $('#quiz-card').innerHTML=`<span class="question-number">CÂU ${quizIndex+1} / ${set.length}${q.chapter?` · ${escapeHTML(q.chapter)}`:''}</span><h3>${escapeHTML(q.q)}</h3>${multi?'<p class="quiz-hint">Chọn tất cả đáp án đúng, rồi bấm Kiểm tra.</p>':''}<div class="options">${q.o.map((x,i)=>`<button class="option" data-opt="${i}" ${multi?`aria-pressed="${pending.has(i)}"`:''}>${escapeHTML(x)}</button>`).join('')}</div><div id="quiz-feedback"></div><div class="quiz-actions">${multi&&answer===undefined?'<button id="quiz-check" disabled>Kiểm tra đáp án</button>':''}<button id="quiz-next" style="display:none">${quizIndex===set.length-1?'Xem tiến độ':'Câu tiếp theo'}</button><button id="quiz-restart" class="secondary">Làm lại</button></div>`;
+    document.querySelectorAll('.option').forEach((button,index)=>{
+      button.onclick=()=>chooseAnswer(index);
+      if(answer!==undefined){button.disabled=true;if(correct.includes(index))button.classList.add('correct');else if(answer.includes(index))button.classList.add('wrong');}
+      else if(multi&&pending.has(index))button.classList.add('selected');
+    });
+    if(answer!==undefined){
+      $('#quiz-feedback').innerHTML=`<div class="quiz-feedback"><strong>${sameAnswers(correct,answer)?'Chính xác':'Chưa đúng'}</strong><br>${escapeHTML(q.e)}<br><span class="citation">Nguồn: ${escapeHTML(q.s)}</span></div>`;
+      $('#quiz-next').style.display='inline-block';
+    }
+    if(multi&&answer===undefined){
+      $('#quiz-check').disabled=pending.size===0;
+      $('#quiz-check').onclick=()=>{const selected=quizPending.get(quizIndex);if(selected?.size){quizAnswers.set(quizIndex,[...selected].sort((a,b)=>a-b));renderQuiz();}};
+    }
+    $('#quiz-next').onclick=()=>{
+      if(quizIndex<set.length-1){quizIndex++;renderQuiz();return;}
+      $('#quiz-card').innerHTML=`<h3>Tiến độ luyện tập</h3><p>Bạn đã làm <strong>${quizAnswers.size}/${set.length}</strong> câu, đúng <strong>${quizScore()}</strong> câu.</p><div class="quiz-actions"><button id="quiz-again" class="secondary">Làm lại từ đầu</button></div>`;
+      $('#quiz-again').onclick=resetQuiz;
+    };
+    $('#quiz-restart').onclick=resetQuiz;
+  }
+  function chooseAnswer(index){
+    if(quizAnswers.has(quizIndex))return;
+    if(!Array.isArray(quizzes[courseCode][quizIndex].a)){quizAnswers.set(quizIndex,[index]);renderQuiz();return;}
+    const pending=quizPending.get(quizIndex)||new Set();
+    if(pending.has(index))pending.delete(index);else pending.add(index);
+    quizPending.set(quizIndex,pending);
+    const button=document.querySelector(`.option[data-opt="${index}"]`);
+    button.classList.toggle('selected',pending.has(index));
+    button.setAttribute('aria-pressed',String(pending.has(index)));
+    $('#quiz-check').disabled=pending.size===0;
+  }
+  function resetQuiz(){quizIndex=0;quizAnswers=new Map();quizPending=new Map();renderQuizChapters();renderQuiz();}
   function renderSources(){
     const c=courses[courseCode],fileList=[...new Set(allItems(courseCode).map(x=>x.source))];
     const openReferences={
@@ -30,10 +76,11 @@
       SDI101m:[['OpenStax University Physics 2','https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law'],['MIT OpenCourseWare: Microelectronic Devices and Circuits','https://ocw.mit.edu/courses/6-012-microelectronic-devices-and-circuits-spring-2009/pages/lecture-notes/']]
     };
     const references=openReferences[courseCode].length?`<article class="source-panel"><h3>Học liệu mở để đào sâu</h3><p>Tài liệu tham khảo nền tảng, không thay thế slide và syllabus của lớp.</p><ul>${openReferences[courseCode].map(([label,url])=>`<li><a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)} ↗</a></li>`).join('')}</ul></article>`:'';
+    const quizSource=courseCode==='CEA201'?'<article class="source-panel"><h3>Ngân hàng câu hỏi bổ sung</h3><p>497 câu CEA201 và lời giải được nhập từ On Tap theo quyền sử dụng do chủ website xác nhận. Bộ câu này là học liệu tự luyện, cần đối chiếu với slide và syllabus khi có khác biệt.</p><a href="https://on-tap.pages.dev/quiz?s=cea201" target="_blank" rel="noopener noreferrer">Xem nguồn On Tap ↗</a></article>':'';
     const coverage=courseCode==='SDI101m'?'Đã đối chiếu 4 CLO và cơ cấu điểm với FLM chính thức. Các chủ đề bán dẫn bám lịch học công khai; hiện chưa có slide 12–28, lab tutorial và sách gốc trên máy, vì vậy phần giải thích vẫn là tóm lược nền tảng cần đối chiếu tiếp.':courseCode==='MAE101'?'Đã đối chiếu trực tiếp 9 CLO, cơ cấu điểm và phạm vi 3 bài kiểm tra với FLM chính thức. Trên máy mới có bản tóm tắt 7 trang, chưa có bộ slide đầy đủ.':courseCode==='CEA201'?'Đã đối chiếu 10 CLO và cơ cấu điểm với FLM chính thức. Logic số, địa chỉ hóa và assembly thuộc nội dung môn; trong 21 chủ đề slide, hệ đếm và điều khiển vi chương trình là nền tảng bổ trợ, chưa có mục riêng trong syllabus đã đối chiếu.':'Đã đối chiếu 6 CLO và cơ cấu điểm với FLM chính thức; 7 bộ slide trên máy bổ sung ví dụ và chủ đề nâng cao.';
     const assessment=c.assessmentNote?`<article class="source-panel"><h3>Đánh giá theo syllabus FLM</h3><p>${escapeHTML(c.assessmentNote)}</p></article>`:'';
     const outcomes=c.cloNote?`<article class="source-panel"><h3>Mục tiêu học tập (CLO)</h3><p>${escapeHTML(c.cloNote)}</p></article>`:'';
-    $('#source-content').innerHTML=`<article class="source-panel"><h3>Tài liệu đang dùng</h3><p>${escapeHTML(c.sourceNote)}</p><p><strong>Phạm vi:</strong> ${escapeHTML(c.scope)}</p><a href="${c.sourceLink}" target="_blank" rel="noopener noreferrer">Mở syllabus FLM ↗</a></article>${outcomes}${assessment}${references}<article class="source-panel"><h3>Danh mục nguồn trong bản đồ</h3><ul>${fileList.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></article><article class="source-panel"><h3>Cách dùng khi ôn thi</h3><p>Học ý chính tại đây; với mục có slide trên máy, mở file cùng tên để xem hình và bài tập. Với điểm số, lịch kiểm tra hoặc phạm vi thi, ưu tiên syllabus FLM đúng lớp.</p></article><article class="source-panel"><h3>Độ phủ</h3><p>${escapeHTML(coverage)}</p></article>`;
+    $('#source-content').innerHTML=`<article class="source-panel"><h3>Tài liệu đang dùng</h3><p>${escapeHTML(c.sourceNote)}</p><p><strong>Phạm vi:</strong> ${escapeHTML(c.scope)}</p><a href="${c.sourceLink}" target="_blank" rel="noopener noreferrer">Mở syllabus FLM ↗</a></article>${outcomes}${assessment}${references}${quizSource}<article class="source-panel"><h3>Danh mục nguồn trong bản đồ</h3><ul>${fileList.map(x=>`<li>${escapeHTML(x)}</li>`).join('')}</ul></article><article class="source-panel"><h3>Cách dùng khi ôn thi</h3><p>Học ý chính tại đây; với mục có slide trên máy, mở file cùng tên để xem hình và bài tập. Với điểm số, lịch kiểm tra hoặc phạm vi thi, ưu tiên syllabus FLM đúng lớp.</p></article><article class="source-panel"><h3>Độ phủ</h3><p>${escapeHTML(coverage)}</p></article>`;
   }
   function selectCourse(code){courseCode=code;selected=0;resetQuiz();renderCourses();renderHeader();renderMap();renderLearn();renderQuick();$('#answer').innerHTML='<p>Nhập câu hỏi để tìm trong kiến thức của môn đang chọn.</p>';renderSources();}
   function setView(v){view=v;document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===`${v}-view`));}
@@ -41,5 +88,15 @@
   function showPrompt(prompt,message){const box=$('#answer');box.replaceChildren();const note=document.createElement('p');note.textContent=message;const field=document.createElement('textarea');field.className='prompt-preview';field.readOnly=true;field.setAttribute('aria-label','Câu hỏi và ngữ cảnh để dán vào ChatGPT');field.value=prompt;box.append(note,field);return note;}
   async function copyPrompt(){const prompt=createPrompt(),note=showPrompt(prompt,'Bạn có thể sao chép nội dung bên dưới để dán vào ChatGPT.');try{await navigator.clipboard.writeText(prompt);note.textContent='Đã sao chép. Hãy dán nội dung vào ChatGPT.';$('#copy-prompt').textContent='Đã sao chép';}catch{note.textContent='Hãy chọn nội dung bên dưới để tự sao chép và dán vào ChatGPT.';$('#copy-prompt').textContent='Không sao chép tự động được';}}
   document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>setView(b.dataset.view));$('#ask-button').onclick=answerQuestion;$('#question').addEventListener('keydown',e=>{if(e.key==='Enter')answerQuestion();});$('#copy-prompt').onclick=copyPrompt;$('#ai-button').onclick=()=>{const prompt=createPrompt(),note=showPrompt(prompt,'Mở ChatGPT và dán nội dung bên dưới để hỏi AI.');const newTab=window.open('https://chatgpt.com/','_blank');if(newTab)newTab.opener=null;else note.textContent='Trình duyệt chặn tab mới. Hãy mở chatgpt.com rồi dán nội dung bên dưới.';navigator.clipboard.writeText(prompt).then(()=>{if(newTab)note.textContent='Đã sao chép. Hãy dán nội dung vào tab ChatGPT vừa mở.';}).catch(()=>{if(newTab)note.textContent='Hãy chọn nội dung bên dưới để tự sao chép và dán vào tab ChatGPT vừa mở.';});};
-  selectCourse(courseCode);
+  $('#quiz-go').onclick=()=>{const target=Number($('#quiz-jump').value);if(!Number.isInteger(target)||target<1||target>quizzes[courseCode].length){$('#quiz-jump').reportValidity();return;}quizIndex=target-1;renderQuiz();};
+  $('#quiz-jump').addEventListener('keydown',event=>{if(event.key==='Enter')$('#quiz-go').click();});
+  $('#quiz-prev').onclick=()=>{if(quizIndex>0){quizIndex--;renderQuiz();}};
+  $('#quiz-chapter').onchange=event=>{const index=quizzes[courseCode].findIndex(question=>question.chapter===event.target.value);if(index>=0){quizIndex=index;renderQuiz();}};
+  const requestedCourse=new URLSearchParams(location.search).get('course');
+  selectCourse(courses[requestedCourse]?requestedCourse:courseCode);
+  const requestedId=Number(location.hash.match(/^#q=(\d+)$/)?.[1]);
+  if(courseCode==='CEA201'&&Number.isInteger(requestedId)&&requestedId>0){
+    const index=quizzes.CEA201.findIndex(question=>question.sourceId===requestedId);
+    if(index>=0){quizIndex=index;renderQuiz();setView('quiz');}
+  }
 })();

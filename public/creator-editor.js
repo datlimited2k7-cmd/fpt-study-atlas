@@ -62,7 +62,11 @@
       list.append(empty);
       return;
     }
+    const query = state.tab === 'quiz' ? $('question-search').value.trim().toLocaleLowerCase() : '';
+    let visible = 0;
     rows.forEach((row, index) => {
+      if (query && !String(index + 1).includes(query) && !row.q.toLocaleLowerCase().includes(query)) return;
+      visible++;
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'list-item' + (index === state.index ? ' active' : '');
@@ -70,6 +74,12 @@
       button.onclick = () => { state.index = index; renderList(); renderForm(); };
       list.append(button);
     });
+    if (!visible) {
+      const empty = document.createElement('p');
+      empty.className = 'empty-list';
+      empty.textContent = 'Không tìm thấy câu hỏi phù hợp.';
+      list.append(empty);
+    }
   }
 
   function renderForm() {
@@ -115,16 +125,40 @@
         const control = field(`Đáp án ${index + 1}`, `option-${index}`, option, { required: true, maxLength: 500 });
         form.append(control);
       });
-      const label = document.createElement('label');
-      label.className = 'field';
-      const title = document.createElement('span');
+      const multi = Array.isArray(record.a);
+      const mode = document.createElement('label');
+      mode.className = 'answer-mode';
+      const toggle = document.createElement('input');
+      toggle.type = 'checkbox';
+      toggle.checked = multi;
+      toggle.onchange = () => {
+        record.a = toggle.checked ? [record.a] : (Array.isArray(record.a) ? record.a[0] ?? 0 : record.a);
+        markDirty(); renderForm();
+      };
+      mode.append(toggle, document.createTextNode('Nhiều đáp án đúng'));
+      const label = document.createElement('fieldset');
+      label.className = 'answer-choices';
+      const title = document.createElement('legend');
       title.textContent = 'Đáp án đúng';
-      const select = document.createElement('select');
-      record.o.forEach((_, index) => select.add(new Option(`Đáp án ${index + 1}`, String(index))));
-      select.value = String(record.a);
-      select.onchange = () => { record.a = Number(select.value); markDirty(); };
-      label.append(title, select);
-      form.append(label,
+      label.append(title);
+      const selectedAnswers = new Set(multi ? record.a : [record.a]);
+      record.o.forEach((_, index) => {
+        const choice = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = multi ? 'checkbox' : 'radio';
+        input.name = 'correct-answer';
+        input.checked = selectedAnswers.has(index);
+        input.onchange = () => {
+          if (multi) {
+            record.a = [...label.querySelectorAll('input:checked')].map(control => Number(control.value));
+          } else record.a = index;
+          markDirty();
+        };
+        input.value = String(index);
+        choice.append(input, document.createTextNode(`Đáp án ${index + 1}`));
+        label.append(choice);
+      });
+      form.append(mode, label,
         field('Giải thích đáp án', 'e', record.e, { required: true, maxLength: 2000, multiline: true }),
         field('Nguồn tài liệu', 's', record.s, { required: true, maxLength: 500 }),
       );
@@ -140,6 +174,7 @@
   }
 
   $('course-select').onchange = (event) => { state.course = event.target.value; state.group = 0; state.index = 0; render(); };
+  $('question-search').oninput = renderList;
   $('group-select').onchange = (event) => { state.group = Number(event.target.value); state.index = 0; renderList(); renderForm(); };
   $('lesson-tab').onclick = () => { state.tab = 'lesson'; state.index = 0; render(); };
   $('quiz-tab').onclick = () => { state.tab = 'quiz'; state.index = 0; render(); };
@@ -158,6 +193,7 @@
     $('content-form').querySelector('input')?.focus();
   };
   $('add-question').onclick = () => {
+    $('question-search').value = '';
     questions().push({ q: '', o: ['', '', '', ''], a: 0, e: '', s: '' });
     state.index = questions().length - 1;
     markDirty(); renderList(); renderForm();
@@ -176,7 +212,9 @@
       }
       for (let index = 0; index < state.quizzes[course].length; index++) {
         const question = state.quizzes[course][index];
-        if (!question.q.trim() || !question.e.trim() || !question.s.trim() || question.o.some(option => !option.trim())) {
+        const correct = Array.isArray(question.a) ? question.a : [question.a];
+        if (!question.q.trim() || !question.e.trim() || !question.s.trim() || question.o.some(option => !option.trim()) ||
+            !correct.length || correct.some(index => !Number.isInteger(index) || index < 0 || index >= question.o.length)) {
           return { course, group: 0, index, tab: 'quiz' };
         }
       }

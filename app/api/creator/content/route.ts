@@ -2,7 +2,7 @@ import { env } from "cloudflare:workers";
 import { isCreatorAuthenticated } from "../../../../lib/creator-auth";
 
 const COURSE_CODES = ["MAE101", "CEA201", "PRF193", "SDI101m"] as const;
-const MAX_BODY_LENGTH = 600_000;
+const MAX_BODY_LENGTH = 2_000_000;
 
 type RecordValue = Record<string, unknown>;
 
@@ -26,7 +26,7 @@ function validDocument(value: unknown): value is { courses: RecordValue; quizzes
     const groups = value.courses[code];
     const questions = value.quizzes[code];
     if (!Array.isArray(groups) || groups.length < 1 || groups.length > 30) return false;
-    if (!Array.isArray(questions) || questions.length < 1 || questions.length > 300) return false;
+    if (!Array.isArray(questions) || questions.length < 1 || questions.length > 750) return false;
     for (const group of groups) {
       if (!isRecord(group) || !isText(group.name, 120, true) || !Array.isArray(group.items) || group.items.length > 300) return false;
       for (const item of group.items) {
@@ -40,14 +40,23 @@ function validDocument(value: unknown): value is { courses: RecordValue; quizzes
       }
     }
     for (const question of questions) {
-      if (!isRecord(question) || !isText(question.q, 1000, true) || !Array.isArray(question.o) ||
-          question.o.length < 2 || question.o.length > 6 || !question.o.every(option => isText(option, 500, true)) ||
-          !Number.isSafeInteger(question.a) || (question.a as number) < 0 || (question.a as number) >= question.o.length ||
-          !isText(question.e, 2000, true) || !isText(question.s, 500, true)) return false;
+      if (!isRecord(question) || !Array.isArray(question.o)) return false;
+      const options = question.o;
+      const answer = question.a;
+      const correct = Array.isArray(answer) ? answer : [answer];
+      if (!isText(question.q, 1000, true) ||
+          options.length < 2 || options.length > 6 || !options.every(option => isText(option, 500, true)) ||
+          correct.length < 1 || correct.length > options.length ||
+          correct.some(index => !Number.isSafeInteger(index) || index < 0 || index >= options.length) ||
+          new Set(correct).size !== correct.length ||
+          !isText(question.e, 2000, true) || !isText(question.s, 500, true) ||
+          (question.chapter !== undefined && !isText(question.chapter, 200)) ||
+          (question.topic !== undefined && !isText(question.topic, 200)) ||
+          (question.sourceId !== undefined && (!Number.isSafeInteger(question.sourceId) || (question.sourceId as number) < 1))) return false;
       questionCount++;
     }
   }
-  return lessonCount <= 1000 && questionCount <= 1000;
+  return lessonCount <= 1000 && questionCount <= 1500;
 }
 
 export async function PUT(request: Request) {

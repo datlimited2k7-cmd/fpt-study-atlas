@@ -19,7 +19,7 @@ export default async function CreatorPage() {
           <label htmlFor="course-select">Môn học</label><select id="course-select" />
           <div className="creator-tabs"><button type="button" id="lesson-tab" className="active">Bài học</button><button type="button" id="quiz-tab">Câu hỏi</button></div>
           <div id="lesson-tools"><label htmlFor="group-select">Nhóm bài</label><select id="group-select" /><div className="group-add"><input id="group-name" type="text" maxLength={120} placeholder="Tên nhóm mới" /><button type="button" id="add-group">Thêm nhóm</button></div><button type="button" id="add-lesson" className="add-item">+ Thêm bài học</button></div>
-          <div id="quiz-tools" hidden><button type="button" id="add-question" className="add-item">+ Thêm câu hỏi</button></div>
+          <div id="quiz-tools" hidden><label htmlFor="question-search">Tìm câu hỏi</label><input id="question-search" type="search" placeholder="Nhập từ khóa hoặc số câu" /><button type="button" id="add-question" className="add-item">+ Thêm câu hỏi</button></div>
           <div id="item-list" className="creator-list" />
         </aside>
         <section className="creator-form-panel"><div id="form-head" className="form-head" /><form id="content-form" /><p className="form-note">Nguồn tài liệu giúp người học đối chiếu nội dung. Hãy kiểm tra trước khi lưu.</p></section>

@@ -21,6 +21,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .creator-nav{padding:20px;position:sticky;top:20px}
 .creator-nav>label,#lesson-tools>label{display:block;font-size:.78rem;font-weight:800;color:#586d86;text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px}
 .creator-nav select,.group-add input{width:100%;padding:11px 12px;border:1px solid #bdcde0;background:white;border-radius:9px;color:#183047}
+#question-search{width:100%;padding:11px 12px;border:1px solid #bdcde0;background:white;border-radius:9px;color:#183047}
+#quiz-tools>label{display:block;font-size:.78rem;font-weight:800;color:#586d86;text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px}
 .creator-tabs{display:grid;grid-template-columns:1fr 1fr;margin:18px 0 20px;border:1px solid #ccd9e8;border-radius:10px;padding:3px;background:#f4f7fb;gap:3px}
 .creator-tabs button{border:0;border-radius:8px;padding:10px 8px;background:transparent;color:#536a82;font-weight:800}
 .creator-tabs button.active{background:#153a58;color:white}
@@ -36,5 +38,6 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 #content-form{display:grid;gap:17px}.field{display:grid;gap:7px;font-weight:700;color:#344e68;font-size:.9rem}
 .field input,.field textarea,.field select{width:100%;border:1px solid #c9d6e5;border-radius:10px;padding:11px 13px;background:#fff;color:#172e45;font-weight:400;line-height:1.5}
 .field textarea{resize:vertical;min-height:88px}.field input:focus,.field textarea:focus,.field select:focus{border-color:#48a5aa}
+.answer-mode{display:flex;align-items:center;gap:9px;color:#344e68;font-weight:700}.answer-choices{border:1px solid #c9d6e5;border-radius:10px;padding:12px 15px;display:flex;flex-wrap:wrap;gap:12px}.answer-choices legend{font-weight:700;color:#344e68;padding:0 5px}.answer-choices label{display:inline-flex;align-items:center;gap:6px;color:#344e68}
 .form-note{border-top:1px solid #e4ebf2;margin:24px 0 0;padding-top:16px;color:#6e8195;font-size:.84rem;line-height:1.5}
 @media(max-width:760px){.creator-header{align-items:flex-start;flex-direction:column}.creator-header-actions{justify-content:flex-start}.creator-editor{grid-template-columns:1fr}.creator-nav{position:static}.creator-list{max-height:280px}}
