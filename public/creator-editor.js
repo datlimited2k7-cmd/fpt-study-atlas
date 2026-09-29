@@ -1,4 +1,5 @@
 (async function () {
+  await import("/quiz-format.js");
   const $ = (id) => document.getElementById(id);
   const state = { base: null, courses: null, quizzes: null, version: 0, course: 'MAE101', group: 0, index: 0, tab: 'lesson', dirty: false };
   const setStatus = (message, error = false) => { $('status').textContent = message; $('status').classList.toggle('error', error); };
@@ -267,7 +268,7 @@
     if (saved.version > 0) {
       for (const code of Object.keys(state.courses)) {
         if (saved.courses?.[code]) state.courses[code] = saved.courses[code];
-        if (saved.quizzes?.[code]) state.quizzes[code] = saved.quizzes[code];
+        if (saved.quizzes?.[code]) state.quizzes[code] = window.mergeAtlasQuizzes(state.quizzes[code], saved.quizzes[code]);
       }
       state.version = saved.version;
     }

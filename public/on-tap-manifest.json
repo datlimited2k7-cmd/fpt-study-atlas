@@ -1,0 +1,22 @@
+{
+  "repository": "chenbaode/on-tap",
+  "revision": "3fadb571c2a5184119270526a136e3b55d62f96d",
+  "hashes": {
+    "index.js": "82a278c743c97a2640d462938d2942cbb41c66545e17e32fef928a73fc336cf6",
+    "cea201.js": "ead87a3f443f9e5fbd2627157888a9dbe5b62b2b1b5e2cca9eca81d9a597fd6c",
+    "mae101.js": "a18691e402ec72e72b9388f88c6a62f5d4858409d8b7a401e7bcdb8168f2e4d9",
+    "mae101-fe.js": "07d52dc09c3cf9546ac43b010cc6ff506bd3f831aaf76776390150c4b76c4a37",
+    "prf192.js": "a6504ceca8724bf378dc0c741caab6482c9dd80a0b4292c8da10ee36a6a33a53",
+    "prf193.js": "75e2bbf1e32f4f5ad289d972dd521cda709d73a0e19f4dc6f6f3e19d07528fa3",
+    "ssa101.js": "e3d7fe475646b7b264e3c48253ab0d4f192aee1bd9d54ffb724a86cfcb75558d",
+    "sdi101m.js": "b8e715bbb66a109cf4a52ca869e02d2fb6b1cfcf3b472af682c0cc67f3336db5"
+  },
+  "counts": {
+    "CEA201": 497,
+    "MAE101": 669,
+    "PRF192": 462,
+    "PRF193": 300,
+    "SSA101": 128,
+    "SDI101m": 50
+  }
+}

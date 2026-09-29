@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 196" width="440" height="205">
+<style>
+.ax{stroke:#5D6E73;stroke-width:1.1;fill:none}
+.cv{stroke:#16242B;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.gd{stroke:#9AA8AB;stroke-width:1;stroke-dasharray:3 3;fill:none}
+.dot{fill:#16242B}
+.hole{fill:#fff;stroke:#16242B;stroke-width:1.3}
+text{fill:#16242B;font-family:"Times New Roman",Times,serif;font-size:17px}
+.v{font-style:italic}
+</style>
+<path class="gd" d="M75 92.7V165M117.3 79.5V165M162.3 68.9V165M203.3 45.7V165M232.3 72.6V165M255.7 94.3V165M284.3 48.7V165M321 75.7V165M347.7 113.3V165M371 99V165"/>
+<path class="ax" d="M6 165H410M405 161.5L411 165L405 168.5M36 190V10M32.5 15L36 9L39.5 15"/>
+<path class="ax" d="M371 46V100"/>
+<path class="cv" d="M36 132C45 110 60 96 75 92.7C90 85.6 104 80 117.3 76.3C132 72.6 147 69.6 162.3 65.7C177 61.7 191 55.5 203.3 45.7L255.7 94.3M255.7 59.3C264 52.6 272 48.7 284.3 48.7C297 48.7 309 60 321 75.7C330 88 339 101 347.7 113.3C357 110.5 366 107 370.5 100C372.4 96 371.4 80 372.2 74C374 62 383 57.5 398 54"/>
+<circle class="hole" cx="117.3" cy="76.3" r="3"/>
+<circle class="hole" cx="162.3" cy="65.7" r="3"/>
+<circle class="dot" cx="162.3" cy="88.3" r="3"/>
+<circle class="dot" cx="255.7" cy="94.3" r="3"/>
+<circle class="hole" cx="255.7" cy="59.3" r="3"/>
+<text x="158" y="31"><tspan class="v">y</tspan> = <tspan class="v">t</tspan>(<tspan class="v">x</tspan>)</text>
+<text class="v" x="71" y="186">a</text>
+<text class="v" x="113.3" y="186">b</text>
+<text class="v" x="158.3" y="186">c</text>
+<text class="v" x="199.3" y="186">d</text>
+<text class="v" x="228.3" y="186">e</text>
+<text class="v" x="251.7" y="186">f</text>
+<text class="v" x="280.3" y="186">g</text>
+<text class="v" x="317" y="186">h</text>
+<text class="v" x="343.7" y="186">i</text>
+<text class="v" x="367" y="186">j</text>
+<text class="v" x="401" y="186">x</text>
+<text class="v" x="18" y="19">y</text>
+</svg>

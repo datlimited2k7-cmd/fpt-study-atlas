@@ -33,7 +33,7 @@
       </section>
       <section id="learn-view" class="view" aria-label="Học theo chương"><div class="section-head"><div><h2>Học theo chương</h2><p>Đi từ khái niệm đến cách dùng, sau đó tự thử ví dụ.</p></div></div><div id="chapter-list" class="chapter-list"></div></section>
       <section id="ask-view" class="view" aria-label="Hỏi đáp theo tài liệu"><div class="section-head"><div><h2>Trợ lý học tập</h2><p>Tra cứu theo tài liệu hoặc mang câu hỏi sang ChatGPT.</p></div></div><div class="ask-layout"><div class="ask-box"><label for="question">Bạn đang vướng phần nào?</label><div class="ask-input"><input id="question" maxlength="600" placeholder="Ví dụ: cache hit là gì, công thức điện dung…" autocomplete="off"><button id="ask-button">Tra cứu</button><button id="ai-button" type="button">Mở ChatGPT</button></div><div id="quick-questions" class="quick-questions"></div><div id="answer" class="answer" aria-live="polite"><p>Nhập câu hỏi để tìm trong kiến thức của môn đang chọn.</p></div></div><div class="ask-note"><strong>Học cùng AI</strong><p>Nút Mở ChatGPT sao chép câu hỏi và ngữ cảnh rồi mở ChatGPT ở thẻ mới. Dán prompt để nhận giải thích từ AI; kiểm tra lại với slide và syllabus.</p><button id="copy-prompt" class="secondary">Chỉ sao chép prompt</button></div></div></section>
-      <section id="quiz-view" class="view" aria-label="Luyện tập"><div class="section-head"><div><h2>Kiểm tra nhanh</h2><p>Câu hỏi tự luyện theo tài liệu học, không phải đề thi của trường.</p></div><span id="quiz-progress" class="small-pill"></span></div><div class="quiz-tools"><label id="quiz-chapter-label" for="quiz-chapter" hidden>Chương <select id="quiz-chapter"></select></label><label for="quiz-jump">Đi đến câu <input id="quiz-jump" type="number" min="1" inputmode="numeric"></label><button id="quiz-go" type="button" class="secondary">Đi tới</button><button id="quiz-prev" type="button" class="secondary">← Câu trước</button></div><div id="quiz-card" class="quiz-card"></div></section>
+      <section id="quiz-view" class="view" aria-label="Luyện tập"><div class="section-head"><div><h2>Kiểm tra nhanh</h2><p>Câu hỏi tự luyện và các bộ đề từ On Tap, kèm đáp án và lời giải.</p></div><span id="quiz-progress" class="small-pill"></span></div><div class="quiz-tools"><label id="quiz-chapter-label" for="quiz-chapter" hidden>Chương <select id="quiz-chapter"></select></label><label for="quiz-jump">Đi đến câu <input id="quiz-jump" type="number" min="1" inputmode="numeric"></label><button id="quiz-go" type="button" class="secondary">Đi tới</button><button id="quiz-prev" type="button" class="secondary">← Câu trước</button></div><div id="quiz-card" class="quiz-card"></div></section>
       <section id="sources-view" class="view" aria-label="Nguồn và phạm vi"><div class="section-head"><div><h2>Nguồn & giới hạn</h2><p>Phân biệt nội dung có tài liệu trên máy với phần còn cần xác nhận từ lớp học.</p></div></div><div id="source-content" class="source-content"></div></section>
     </main>
   </div>
@@ -42,7 +42,11 @@
   <script src="quiz.js"></script>
   <script src="quiz-expansions.js"></script>
   <script src="quiz-slot08-09.js"></script>
-  <script src="cea201-on-tap.js"></script>
+  <script src="on-tap-sync.js"></script>
+  <script src="quiz-format.js"></script>
+  <link rel="stylesheet" href="/vendor/katex/katex.min.css">
+  <script src="/vendor/katex/katex.min.js"></script>
+  <script src="/vendor/katex/contrib/auto-render.min.js"></script>
   <script src="content-loader.js"></script>
 </body>
 </html>
