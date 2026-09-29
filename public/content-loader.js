@@ -18,6 +18,7 @@
     warning.textContent = 'Đang hiển thị bản học liệu có sẵn. Nội dung cập nhật tạm thời chưa tải được.';
     document.querySelector('.main')?.prepend(warning);
   }
+  window.applyOpenStudy?.();
   const script = document.createElement('script');
   script.src = '/app.js';
   document.body.append(script);

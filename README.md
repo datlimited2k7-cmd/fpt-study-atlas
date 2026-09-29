@@ -8,6 +8,7 @@ Website học tập cho MAE101, CEA201, PRF193 và SDI101m. Bản đang chạy: 
 | --- | --- |
 | `public/data.js` | Danh sách môn, chương và nội dung tóm tắt gốc |
 | `public/lesson-guides.js` | Phần giải thích, ví dụ, lỗi thường gặp và bài tự luyện |
+| `public/open-study.js` | 16 ghi chú đào sâu từ học liệu mở, có ví dụ và liên kết theo chủ đề cho cả bốn môn |
 | `public/quiz.js`, `public/quiz-expansions.js` | Câu hỏi trắc nghiệm và lời giải |
 | `public/quiz-slot08-09.js` | 16 câu tự luyện từ slide mô đun và hàm C của PRF193 |
 | `public/cea201-on-tap.js` | 497 câu CEA201 từ On Tap, gồm 7 câu nhiều đáp án |
@@ -20,6 +21,8 @@ Website học tập cho MAE101, CEA201, PRF193 và SDI101m. Bản đang chạy: 
 Ngân hàng CEA201 từ [On Tap](https://on-tap.pages.dev/quiz?s=cea201) được nhập theo xác nhận quyền sử dụng của chủ website này. Dữ liệu được sắp theo 17 chương, giữ mã câu gốc để mở trực tiếp, ví dụ `/atlas?course=CEA201#q=444`. Khi cần cập nhật nguồn, chạy `node scripts/import-on-tap-cea201.mjs`, xem lại thay đổi và chạy `node scripts/generate-base.mjs`. Đáp án và lời giải của On Tap là học liệu tự luyện; hãy đối chiếu với slide và syllabus khi ôn thi.
 
 PRF193 có thêm 8 bài và 16 câu tự luyện dựa trên `Slot_08_09_Modules_Functions.pptx` (71 slide). Các bài mới ghi phạm vi slide ở trường nguồn. Slide 68 ghi sai điều kiện năm nhuận; bản học trên website dùng công thức đúng và nêu rõ điểm cần tránh.
+
+Nguồn mở bổ sung gồm OpenStax Calculus/University Physics, bài giảng MIT OpenCourseWare 18.06SC/6.004/6.012, GNU C Language Manual và Microsoft Learn C++. Có 4 ghi chú áp dụng cho mỗi môn (16 tổng cộng). Mỗi ghi chú là lời giải thích và ví dụ mới, gắn trực tiếp vào bài học cùng liên kết tới nguồn cụ thể. Nguồn mở giúp đào sâu; syllabus FLM và slide đúng lớp vẫn quyết định phạm vi học và kiểm tra.
 
 ## Chạy và kiểm tra
 
