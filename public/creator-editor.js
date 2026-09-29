@@ -104,6 +104,9 @@
         field('Giải thích chi tiết', 'details', record.details, { multiline: true }),
         field('Điểm cần nhớ hoặc công thức', 'key', record.key, { maxLength: 1000, multiline: true }),
         field('Ví dụ hoặc cách hiểu', 'example', record.example, { maxLength: 2000, multiline: true }),
+        field('Lỗi dễ mắc', 'pitfall', record.pitfall, { maxLength: 1000, multiline: true }),
+        field('Câu tự luyện', 'practice', record.practice, { maxLength: 1000, multiline: true }),
+        field('Đáp án tự luyện', 'answer', record.answer, { maxLength: 1000, multiline: true }),
         field('Nguồn tài liệu', 'source', record.source, { required: true, maxLength: 500 }),
       );
     } else {
@@ -149,7 +152,7 @@
     markDirty(); render();
   };
   $('add-lesson').onclick = () => {
-    items().push({ title: '', idea: '', details: '', key: '', example: '', source: '' });
+    items().push({ title: '', idea: '', details: '', key: '', example: '', pitfall: '', practice: '', answer: '', source: '' });
     state.index = items().length - 1;
     markDirty(); renderList(); renderForm();
     $('content-form').querySelector('input')?.focus();

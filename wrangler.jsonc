@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "fpt-study-atlas",
+  "main": "vinext/server/fetch-handler",
+  "compatibility_date": "2026-05-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "fpt-study-atlas-content",
+      "database_id": "60cc01fe-d26b-4599-b190-02353987107d"
+    }
+  ],
+  "observability": { "enabled": true }
+}

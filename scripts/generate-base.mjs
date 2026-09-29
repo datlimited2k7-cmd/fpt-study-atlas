@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { runInNewContext } from "node:vm";
 
 const context = { window: {} };
-for (const name of ["data.js", "quiz.js"]) {
+for (const name of ["data.js", "lesson-guides.js", "quiz.js", "quiz-expansions.js"]) {
   runInNewContext(readFileSync(new URL(`../public/${name}`, import.meta.url), "utf8"), context, {
     filename: name,
     timeout: 1000,

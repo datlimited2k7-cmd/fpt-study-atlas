@@ -1,7 +1,6 @@
 import { env } from "cloudflare:workers";
-import { getChatGPTUser } from "../../../chatgpt-auth";
+import { isCreatorAuthenticated } from "../../../../lib/creator-auth";
 
-const OWNER_EMAIL = "luwy21643@gmail.com";
 const COURSE_CODES = ["MAE101", "CEA201", "PRF193", "SDI101m"] as const;
 const MAX_BODY_LENGTH = 600_000;
 
@@ -32,7 +31,11 @@ function validDocument(value: unknown): value is { courses: RecordValue; quizzes
       if (!isRecord(group) || !isText(group.name, 120, true) || !Array.isArray(group.items) || group.items.length > 300) return false;
       for (const item of group.items) {
         if (!isRecord(item) || !isText(item.title, 180, true) || !isText(item.idea, 1000, true) ||
-            !isText(item.details) || !isText(item.key, 1000) || !isText(item.example, 2000) || !isText(item.source, 500, true)) return false;
+            !isText(item.details) || !isText(item.key, 1000) || !isText(item.example, 2000) ||
+            (item.pitfall !== undefined && !isText(item.pitfall, 1000)) ||
+            (item.practice !== undefined && !isText(item.practice, 1000)) ||
+            (item.answer !== undefined && !isText(item.answer, 1000)) ||
+            !isText(item.source, 500, true)) return false;
         lessonCount++;
       }
     }
@@ -48,8 +51,7 @@ function validDocument(value: unknown): value is { courses: RecordValue; quizzes
 }
 
 export async function PUT(request: Request) {
-  const user = await getChatGPTUser();
-  if (!user || user.email.trim().toLowerCase() !== OWNER_EMAIL) {
+  if (!(await isCreatorAuthenticated())) {
     return Response.json({ error: "Chỉ người sáng tạo mới được sửa nội dung." }, { status: 403 });
   }
   const origin = request.headers.get("origin");

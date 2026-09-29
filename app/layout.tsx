@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Bản đồ học tập FPT · Kỳ 1",
-  description: "Bản đồ kiến thức và ôn tập học kỳ 1.",
+  title: "Bản đồ học tập FPT",
+  description: "Bản đồ kiến thức và ôn tập các môn học.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

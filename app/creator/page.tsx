@@ -1,25 +1,17 @@
 import Script from "next/script";
-import { requireChatGPTUser } from "../chatgpt-auth";
+import { redirect } from "next/navigation";
+import { isCreatorAuthenticated } from "../../lib/creator-auth";
 
 export const dynamic = "force-dynamic";
 
-const OWNER_EMAIL = "luwy21643@gmail.com";
-
 export default async function CreatorPage() {
-  const user = await requireChatGPTUser("/creator");
-  if (user.email.trim().toLowerCase() !== OWNER_EMAIL) {
-    return <main style={{ fontFamily: "system-ui", maxWidth: 620, margin: "80px auto", padding: 24 }}>
-      <h1>Bạn chưa có quyền sáng tạo</h1>
-      <p>Tài khoản {user.email} có thể học bằng chế độ người dùng. Chỉ chủ trang mới được sửa bài học và câu hỏi.</p>
-      <a href="/">Về trang học</a>
-    </main>;
-  }
+  if (!(await isCreatorAuthenticated())) redirect("/creator/login");
   return <>
     <link rel="stylesheet" href="/creator.css" />
     <main className="creator-shell">
       <header className="creator-header">
         <div><span className="creator-eyebrow">BẢN ĐỒ HỌC TẬP FPT</span><h1>Chế độ sáng tạo</h1><p>Thêm hoặc sửa bài học và câu hỏi. Lưu để mọi người mở link đều thấy nội dung mới.</p></div>
-        <div className="creator-header-actions"><a href="/atlas.html">← Xem như người học</a><button type="button" id="save-all" disabled>Lưu thay đổi</button></div>
+        <div className="creator-header-actions"><a href="/atlas.html">← Xem như người học</a><a href="/creator/password">Đổi mật khẩu</a><form method="post" action="/api/creator/logout"><button type="submit">Đăng xuất</button></form><button type="button" id="save-all" disabled>Lưu thay đổi</button></div>
       </header>
       <div id="status" className="creator-status" role="status" aria-live="polite">Đang tải nội dung…</div>
       <div id="editor" className="creator-editor" hidden>
