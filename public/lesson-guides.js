@@ -136,7 +136,7 @@
       },
       {
         details: `Tích phân xác định là giới hạn của các tổng Riemann và cho độ biến thiên có dấu. Nếu F′=f trên [a,b], định lý cơ bản cho ∫ₐᵇf(x)dx=F(b)−F(a). Khi tính diện tích hình học, chia tại các nghiệm của f và tích phân |f|; kết quả có dấu âm ở phần đồ thị nằm dưới trục hoành. Luôn kiểm tra đơn vị: tích phân vận tốc theo thời gian cho độ dời, không tự động là quãng đường.`,
-        example: `∫₀²x dx=[x²/2]₀²=2. Nếu x biểu thị vận tốc m/s và biến tích phân là giây, kết quả là 2 m độ dời.`,
+        example: `∫₀²x dx=[x²/2]₀²=2. Trong ví dụ chuyển động riêng, nếu t tính bằng giây và v(t) có giá trị số bằng t m/s, thì ∫₀²v(t)dt=2 m độ dời.`,
         pitfall: `Đừng cộng hằng số C cho tích phân xác định; đừng nhầm diện tích với tích phân có dấu.`,
         practice: `Tính ∫₀³(2x+1)dx.`,
         answer: `Nguyên hàm là x²+x; thay cận được (9+3)−0=12.`
@@ -392,7 +392,7 @@
       },
       {
         details: `Hàm nên có một nhiệm vụ rõ, tên mô tả việc làm, tham số đầu vào và giá trị trả về phù hợp. Truyền giá trị tạo bản sao; truyền tham chiếu cho phép hàm tác động biến gốc, còn const reference tránh sao chép mà không cho sửa. Đệ quy cần trường hợp dừng và mỗi lần gọi phải tiến gần tới nó; nếu không sẽ tràn stack. Khi gỡ lỗi, thử hàm riêng với đầu vào nhỏ trước khi tích hợp chương trình lớn.`,
-        example: `int square(int x){return x*x;} Gọi square(4) trả 16 nhưng không đổi biến 4 ở phía gọi. Hàm void addOne(int& x){x++;} thì addOne(a) sửa trực tiếp a.`,
+        example: `int square(int x){return x*x;} Với int a=4, square(a) trả 16 và a vẫn bằng 4 vì hàm nhận bản sao. Hàm void addOne(int& x){x++;} trong C++ thì addOne(a) sửa trực tiếp a.`,
         pitfall: `Đừng trả về tham chiếu hoặc con trỏ tới biến cục bộ đã hết thời gian sống.`,
         practice: `Nếu a=3, gọi một hàm nhận int x bằng giá trị rồi thực hiện x=10, a thành bao nhiêu?`,
         answer: `a vẫn là 3 vì hàm chỉ sửa bản sao x.`
