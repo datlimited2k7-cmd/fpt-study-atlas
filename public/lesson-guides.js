@@ -3,7 +3,10 @@
   const prfOriginal = window.COURSES.PRF193.groups.flatMap(group => group.items);
   const prfTopic = (sourceIndex, title, idea, details, key, example) =>
     ({ ...prfOriginal[sourceIndex], title, idea, details, key, example });
-  window.COURSES.PRF193.scope = '15 chủ đề học từ 7 bộ slide PRF193';
+  const moduleLesson = (title, idea, details, key, example, pitfall, practice, answer, slides) =>
+    ({ title, idea, details, key, example, pitfall, practice, answer,
+       source: `Slot_08_09_Modules_Functions.pptx, slide ${slides}` });
+  window.COURSES.PRF193.scope = '23 chủ đề học từ 8 bộ slide PRF193';
   window.COURSES.PRF193.groups = [
     { name: 'Từ chương trình đầu tiên', items: [
       prfTopic(0, '1. Giới thiệu & môi trường', 'Chương trình C/C++ cần được biên dịch trước khi chạy.', 'Tạo file nguồn, chọn compiler, biên dịch rồi chạy; phân biệt lỗi biên dịch, lỗi lúc chạy và lỗi logic.', 'source → compile → executable', 'Thiếu dấu ; làm biên dịch thất bại; phép tính sai dù chạy được là lỗi logic.'),
@@ -19,12 +22,86 @@
       prfTopic(4, '9. Hàm và tham số', 'Hàm chia bài toán thành các đơn vị có trách nhiệm rõ.', 'Phân biệt truyền giá trị, truyền tham chiếu, scope và trường hợp dừng của đệ quy.', 'int square(int x) { return x*x; }', 'Hàm nhận x bằng giá trị không sửa biến gốc của người gọi.'),
       prfTopic(4, '10. Con trỏ và quản lý bộ nhớ', 'Con trỏ lưu địa chỉ; quyền sở hữu quyết định ai giải phóng tài nguyên.', 'Dùng &, *, nullptr; phân biệt stack/heap, tham chiếu và con trỏ; ưu tiên RAII.', '&x lấy địa chỉ; *p giải tham chiếu', 'Đổi x qua tham chiếu tác động biến gốc; truyền giá trị chỉ đổi bản sao.'),
     ] },
+    { name: 'Chuyên đề mô đun và hàm C · Slot 08–09', items: [
+      moduleLesson('11. Thiết kế mô đun: cohesion và coupling',
+        'Mỗi mô đun nên làm một việc rõ ràng và giao tiếp với mô đun khác qua dữ liệu cần thiết.',
+        `Bắt đầu bằng cách liệt kê các động từ trong yêu cầu: nhập, tính, in. Mỗi nhiệm vụ đủ rõ có thể thành một hàm. Cohesion cao nghĩa là các câu lệnh trong cùng hàm cùng phục vụ một mục đích; coupling thấp nghĩa là hàm ít phụ thuộc biến toàn cục hoặc chi tiết bên trong hàm khác.\n\nVí dụ bài tổng các ước: tách hàm nhập n, hàm sumDivisors(n) chỉ tính tổng, và hàm in kết quả. main điều phối các bước. Cách này giúp kiểm thử hàm tính bằng đầu vào cố định mà không cần nhập từ bàn phím.`,
+        'Một hàm → một nhiệm vụ; dữ liệu đi qua tham số và giá trị trả về.',
+        'Với n=12, sumDivisors(12) trả 1+2+3+4+6+12=28. Hàm tính không gọi scanf hay printf, nên có thể dùng lại trong chương trình khác.',
+        'Gộp nhập liệu, tính toán và in vào cùng một hàm làm khó kiểm thử; nhiều hàm cùng sửa biến toàn cục làm coupling tăng.',
+        'Thiết kế các hàm cho chương trình nhận hai số dương và in UCLN, BCNN.',
+        'Tách nhập hai số, gcd(a,b), lcm(a,b) và in kết quả. Với số dương, lcm(a,b)=a/gcd(a,b)×b; tính a/gcd trước để giảm nguy cơ tràn.',
+        '7–25'),
+      moduleLesson('12. Định nghĩa và gọi hàm C',
+        'Hàm C gồm kiểu trả về, tên, danh sách tham số và thân hàm; lời gọi truyền đối số theo đúng thứ tự.',
+        `Dạng tổng quát là returnType name(type parameter, ...) { statements; return value; }. Hàm void thực hiện tác vụ không trả giá trị. Parameter là biến trong khai báo/định nghĩa; argument là biểu thức được đưa vào khi gọi. Hàm main là điểm bắt đầu của chương trình C và nên khai báo rõ int main(void), rồi trả 0 khi kết thúc thành công.\n\nKhi hàm tính số thực từ số nguyên, ép kiểu trước phép chia hoặc dùng mẫu số thực. Giá trị trả về double không cứu được phần lẻ nếu phép chia nguyên đã xảy ra trước đó.`,
+        'double average(int a,int b,int c) { return (a+b+c)/3.0; }',
+        'average(4,5,6) tính 15/3.0=5.0. Nếu tổng là 5, phép chia 5/3.0 cho khoảng 1.6667; dùng 5/3 rồi gán vào double chỉ còn 1.0.',
+        'Đừng nhầm tham số với đối số, hoặc dùng /3 rồi mong kiểu trả về double khôi phục phần lẻ.',
+        'Hàm average(1,2,2) phải trả gần bao nhiêu? Vì sao mẫu số phải là 3.0?',
+        'Tổng bằng 5, kết quả là 5/3≈1.6667. /3.0 làm phép chia số thực; /3 là phép chia nguyên cho kết quả 1.',
+        '27–41'),
+      moduleLesson('13. Prototype và header',
+        'Prototype báo trước tên, kiểu trả về và kiểu tham số để trình biên dịch kiểm tra lời gọi.',
+        `Nếu định nghĩa hàm nằm sau main, khai báo trước lời gọi, ví dụ int sumOddNumbers(int n);. Khi chuyển hàm sang tệp khác, đặt khai báo trong header riêng và thêm tệp nguồn chứa định nghĩa vào bước biên dịch/liên kết. #include <stdio.h> tìm header hệ thống; #include "my_math.h" thường tìm header của dự án.\n\nPrototype phải khớp định nghĩa về kiểu trả về và danh sách tham số. Trình biên dịch kiểm tra lời gọi theo khai báo; trình liên kết cần tìm được định nghĩa tương ứng.`,
+        'Khai báo: int sumOddNumbers(int n);  ·  Định nghĩa: int sumOddNumbers(int n) { ... }',
+        'Đặt prototype trước main, gọi sumOddNumbers(5) trong main, rồi định nghĩa hàm phía dưới. Tổng các số lẻ từ 1 đến 5 là 1+3+5=9.',
+        'Thiếu prototype hoặc sai kiểu tham số có thể gây lỗi/cảnh báo; chỉ có header mà không biên dịch tệp định nghĩa vẫn gây lỗi liên kết.',
+        'Vì sao có prototype nhưng vẫn có thể bị lỗi “undefined reference” khi build?',
+        'Prototype chỉ khai báo giao diện; cần có định nghĩa của hàm trong tệp được liên kết vào chương trình.',
+        '44–48'),
+      moduleLesson('14. Truyền tham trị và lời gọi hàm',
+        'Trong C, tham số nhận bản sao của giá trị đối số; sửa tham số không tự sửa biến bên gọi.',
+        `Khi gọi swap(x,y) với hai tham số int a,int b, a và b là biến khác x,y. Hàm có thể hoán đổi bản sao, còn x,y không đổi. Muốn hàm C sửa biến của người gọi, truyền địa chỉ và nhận con trỏ, ví dụ swap(&x,&y) với tham số int *a,int *b. C++ còn có tham chiếu int&, nhưng đó không phải cú pháp truyền tham chiếu của C.\n\nMỗi lần gọi có vùng lưu trạng thái thực thi cho tham số và biến cục bộ; khi lời gọi kết thúc, biến cục bộ tự động hết thời gian sống. Chi tiết bố trí stack phụ thuộc trình biên dịch và nền tảng.`,
+        'C: swap(int *a,int *b) { int t=*a; *a=*b; *b=t; }',
+        'x=5,y=7: swap(x,y) với hai tham số int để x=5,y=7. swap(&x,&y) với hai con trỏ và thân hàm như trên cho x=7,y=5.',
+        'Slide minh họa in địa chỉ bằng %u; trong C hãy dùng %p với (void*)ptr. Không trả con trỏ tới biến cục bộ đã hết thời gian sống.',
+        'Một hàm void setTen(int n){n=10;} được gọi với x=3. Sau lời gọi, x bằng bao nhiêu?',
+        'x vẫn bằng 3 vì n là bản sao. Muốn sửa x trong C, truyền &x và nhận int *n rồi gán *n=10.',
+        '49–53'),
+      moduleLesson('15. Phân rã bài toán thành hàm',
+        'Chia thuật toán theo trách nhiệm để có thể thử từng hàm trước khi ghép chương trình.',
+        `Với bài in n số nguyên tố đầu tiên, main đọc n rồi gọi printNPrimes(n). Hàm này tăng dần ứng viên từ 2, gọi isPrime(value), in số nguyên tố và dừng khi đã in đủ n số. isPrime chỉ kiểm tra một số: n<2 là sai; với n≥2, tìm ước từ 2 đến căn bậc hai của n.\n\nTương tự, bài UCLN/BCNN nên có gcd(a,b) dùng Euclid và lcm(a,b) dùng kết quả gcd, thay vì lặp lại cùng logic trong main. Đầu vào ngoài miền yêu cầu cần được xử lý rõ trước khi gọi.`,
+        'main → printNPrimes(n) → isPrime(value)',
+        'n=5 cho dãy 2, 3, 5, 7, 11. Kiểm tra isPrime(1)=false, isPrime(2)=true, isPrime(9)=false trước khi chạy cả chương trình.',
+        'Mẫu kiểm tra chỉ lặp từ 2 mà không xử lý n<2 sẽ nhận nhầm 0 và 1 là số nguyên tố.',
+        'Với n=3, printNPrimes(n) in gì? Hàm isPrime(1) phải trả gì?',
+        'In 2, 3, 5. isPrime(1) trả false vì số nguyên tố phải lớn hơn 1.',
+        '55–59'),
+      moduleLesson('16. Scope, thời gian sống và che khuất biến',
+        'Scope là nơi tên biến được nhìn thấy; thời gian sống là khoảng đối tượng tồn tại trong bộ nhớ.',
+        `Biến cục bộ tự động khai báo trong một khối thường chỉ dùng được từ chỗ khai báo đến dấu } đóng khối đó và hết thời gian sống khi rời khối. Biến khai báo ngoài mọi hàm có phạm vi tệp/toàn cục tùy khai báo và thời gian sống suốt chương trình. Một biến trong khối trong có thể che biến cùng tên ở khối ngoài; dùng tên gần nhất đang thấy.\n\nTránh dùng biến toàn cục làm kênh trao đổi dữ liệu giữa các hàm khi có thể truyền tham số. Điều này giảm phụ thuộc ngầm và giúp kiểm thử độc lập.`,
+        'Scope = vùng mã truy cập được tên; lifetime = lúc đối tượng tồn tại.',
+        'int x=5; trong một khối con khai báo int x=9; printf ở khối con in 9, sau khi ra khối con in 5. Hai biến có cùng tên nhưng là hai đối tượng khác nhau.',
+        'Đừng trả địa chỉ của biến cục bộ tự động. Biến cục bộ chưa khởi tạo cũng không mặc định bằng 0.',
+        'Một hàm trả &local, trong đó local là biến int cục bộ. Sau khi hàm kết thúc, con trỏ này còn hợp lệ không?',
+        'Không. Thời gian sống của local đã kết thúc, nên dùng con trỏ đó là không hợp lệ.',
+        '60–64'),
+      moduleLesson('17. Walkthrough qua lời gọi hàm',
+        'Theo dõi từng đối số, tham số, giá trị trả về và biến bên gọi để hiểu kết quả.',
+        `Lập bảng theo từng bước: giá trị trước lời gọi, ánh xạ đối số→tham số, tính trong hàm, giá trị return, rồi biểu thức ở nơi gọi. Với phép chia số nguyên C, bỏ phần lẻ theo hướng về 0. Việc ghi lại giá trị giúp phát hiện lỗi thứ tự đối số và nhầm biến cục bộ với biến ở main.\n\nCó thể dùng debugger để bước vào hàm và quan sát, nhưng trước hết nên dự đoán kết quả bằng tay để có cơ sở so sánh.`,
+        'Đối số → tham số → tính trong hàm → return → biểu thức bên gọi.',
+        'f(a,b,c) trả 2*(a+b-c)/5. Với x=5,y=6,z=7, f(y,x,z)=2*(6+5-7)/5=8/5=1 theo chia nguyên; t=3*f(y,x,z)=3.',
+        'Đừng đọc f(y,x,z) như f(x,y,z). Kết quả trung gian 8/5 là 1 trong C, không phải 1,6.',
+        'Nếu gọi f(5,6,7) và gán t=2*f(5,6,7), t bằng bao nhiêu?',
+        'f=2*(5+6-7)/5=8/5=1 theo chia nguyên; t=2.',
+        '65–66'),
+      moduleLesson('18. Kiểm tra điều kiện biên trong bài hàm',
+        'Công thức ngắn vẫn cần tiền điều kiện và ca thử ở ranh giới.',
+        `Mẹo kiểm tra lũy thừa của 2 là n>0 && (n & (n-1))==0. Điều kiện n>0 là bắt buộc: riêng biểu thức bit cho n=0 cũng bằng 0 nhưng 0 không là lũy thừa của 2.\n\nNăm nhuận khi chia hết cho 400, hoặc chia hết cho 4 nhưng không chia hết cho 100. Công thức trên slide 68 bị đảo điều kiện 100/400; khi xây hàm isLeapYear(y), dùng (y%400==0) || (y%4==0 && y%100!=0). Khi kiểm tra ngày hợp lệ, xét số ngày mỗi tháng, năm nhuận cho tháng 2, và từ chối tháng/ngày ngoài miền.`,
+        'isPower2(n): n>0 && (n&(n-1))==0; isLeapYear(y): y%400==0 || (y%4==0 && y%100!=0)',
+        'isPower2(0)=false, isPower2(8)=true. Năm 1900 không nhuận vì chia hết 100 nhưng không chia hết 400; năm 2000 nhuận.',
+        'Không chép nguyên công thức năm nhuận trên slide 68: nó phân loại sai 1900 và 2100 là năm nhuận. Luôn thử 0, 1, số mũ hai và các năm thế kỷ.',
+        'Trong các năm 1900, 2000, 2024, năm nào nhuận?',
+        '2000 và 2024 nhuận; 1900 không nhuận. 2000 chia hết 400, 2024 chia hết 4 mà không chia hết 100.',
+        '67–68'),
+    ] },
     { name: 'C++ mở rộng', items: [
-      prfTopic(5, '11. Lớp và đối tượng', 'Class kết hợp trạng thái và hành vi thành kiểu tự định nghĩa.', 'Tạo object, constructor/destructor, private/public và giữ bất biến của đối tượng.', 'class → object', 'BankAccount có thể che số dư và chỉ cho deposit hợp lệ.'),
-      prfTopic(5, '12. Kế thừa và đa hình', 'Kế thừa dùng cho quan hệ is-a; virtual chọn hành vi theo kiểu đối tượng thật.', 'Dùng base/derived, override và virtual destructor đúng chỗ.', 'virtual → dynamic dispatch', 'draw() ảo gọi cách vẽ tương ứng với lớp con.'),
-      prfTopic(6, '13. STL và thuật toán', 'Thư viện chuẩn cung cấp container, iterator và thuật toán dùng lại.', 'Chọn vector/map/set theo thao tác cần làm; dùng sort, find và hiểu iterator.', 'vector tự đổi kích thước khi push_back', 'std::sort(v.begin(),v.end()) sắp xếp vector tăng mặc định.'),
-      prfTopic(6, '14. File, ngoại lệ và template', 'File lưu dữ liệu lâu dài; exception tách lỗi khỏi luồng thường.', 'Dùng fstream, kiểm tra trạng thái, xử lý ngoại lệ và viết template cơ bản.', 'if (!file) xử lý lỗi mở file', 'Mở file thất bại phải được báo, không được giả định đã đọc dữ liệu.'),
-      prfTopic(6, '15. Đa luồng và dữ liệu dùng chung', 'Thread cho nhiều việc tiến triển đồng thời nhưng dữ liệu chung cần đồng bộ.', 'Dùng std::thread, join, mutex; nhận biết data race và đo hiệu năng sau khi sửa đúng.', 'khóa trước khi sửa trạng thái dùng chung', 'Hai thread tăng cùng biến không khóa có thể làm mất lượt cập nhật.'),
+      prfTopic(5, '19. Lớp và đối tượng', 'Class kết hợp trạng thái và hành vi thành kiểu tự định nghĩa.', 'Tạo object, constructor/destructor, private/public và giữ bất biến của đối tượng.', 'class → object', 'BankAccount có thể che số dư và chỉ cho deposit hợp lệ.'),
+      prfTopic(5, '20. Kế thừa và đa hình', 'Kế thừa dùng cho quan hệ is-a; virtual chọn hành vi theo kiểu đối tượng thật.', 'Dùng base/derived, override và virtual destructor đúng chỗ.', 'virtual → dynamic dispatch', 'draw() ảo gọi cách vẽ tương ứng với lớp con.'),
+      prfTopic(6, '21. STL và thuật toán', 'Thư viện chuẩn cung cấp container, iterator và thuật toán dùng lại.', 'Chọn vector/map/set theo thao tác cần làm; dùng sort, find và hiểu iterator.', 'vector tự đổi kích thước khi push_back', 'std::sort(v.begin(),v.end()) sắp xếp vector tăng mặc định.'),
+      prfTopic(6, '22. File, ngoại lệ và template', 'File lưu dữ liệu lâu dài; exception tách lỗi khỏi luồng thường.', 'Dùng fstream, kiểm tra trạng thái, xử lý ngoại lệ và viết template cơ bản.', 'if (!file) xử lý lỗi mở file', 'Mở file thất bại phải được báo, không được giả định đã đọc dữ liệu.'),
+      prfTopic(6, '23. Đa luồng và dữ liệu dùng chung', 'Thread cho nhiều việc tiến triển đồng thời nhưng dữ liệu chung cần đồng bộ.', 'Dùng std::thread, join, mutex; nhận biết data race và đo hiệu năng sau khi sửa đúng.', 'khóa trước khi sửa trạng thái dùng chung', 'Hai thread tăng cùng biến không khóa có thể làm mất lượt cập nhật.'),
     ] },
   ];
   const guides = {
@@ -585,7 +662,8 @@
   };
 
   for (const [code, additions] of Object.entries(guides)) {
-    const lessons = window.COURSES[code].groups.flatMap(group => group.items);
+    const lessons = window.COURSES[code].groups.flatMap(group => group.items)
+      .filter(lesson => code !== 'PRF193' || !lesson.source.startsWith('Slot_08_09_'));
     if (lessons.length !== additions.length) throw new Error(`Thiếu bài hướng dẫn ${code}: ${additions.length}/${lessons.length}`);
     lessons.forEach((lesson, index) => {
       const guide = additions[index];

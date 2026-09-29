@@ -66,8 +66,8 @@ window.COURSES = {
   },
   PRF193: {
     name:'Cơ sở lập trình C/C++', en:'Programming Fundamentals', accent:'#1c9a94',
-    scope:'7 bộ slide và 657 trang đang có trên máy',
-    sourceNote:'Đã đối chiếu syllabus PRF193 chính thức trên FLM (ID 13190, duyệt 22/08/2025): 3 tín chỉ, 6 CLO. Nội dung gồm C/C++ cơ bản, cấu trúc điều khiển, hàm, OOP và quản lý bộ nhớ, file/stream, tư duy tính toán và công cụ AI. Bảy bộ slide trên máy còn mở rộng sang STL, template, exception và đa luồng.',
+    scope:'8 bộ slide, gồm chuyên đề 71 trang về mô đun và hàm C',
+    sourceNote:'Đã đối chiếu syllabus PRF193 chính thức trên FLM (ID 13190, duyệt 22/08/2025): 3 tín chỉ, 6 CLO. Nội dung gồm C/C++ cơ bản, cấu trúc điều khiển, hàm, OOP và quản lý bộ nhớ, file/stream, tư duy tính toán và công cụ AI. Ngoài 7 bộ slide đã có, đã bổ sung Slot_08_09_Modules_Functions.pptx (71 trang) về thiết kế mô đun, hàm C, prototype, truyền tham trị và phạm vi biến. Slide 68 có công thức năm nhuận sai; bài học trên website dùng công thức đã sửa.',
     sourceLink:'https://flm.fpt.edu.vn/gui/role/student/SyllabusDetails?sylID=13190',
     cloNote:'CLO1: cú pháp, kiểu, toán tử, chuỗi, mảng, con trỏ; CLO2: rẽ nhánh và vòng lặp; CLO3: hàm, đệ quy, function pointer và truyền tham số; CLO4: OOP, bộ nhớ động, smart pointer, template và exception; CLO5: file văn bản/nhị phân và truy cập ngẫu nhiên; CLO6: dùng công cụ AI và tư duy tính toán để phân tích, mô hình hóa, trình bày lời giải.',
     assessmentNote:'Điểm: dự án cuối môn 20% (trình bày và hỏi đáp theo nhóm), 5 lab 20%, bài thi thực hành PE 30% (85 phút, 1–4 bài lập trình), 2 progress test 10%, bài thi lý thuyết TE 20% (60 phút, 50 câu trắc nghiệm/trả lời ngắn). PE và TE kiểm tra CLO1–5; dự án và lab bao gồm CLO6. Điểm trung bình tối thiểu 5; tiêu chí hoàn thành dự án và TE là 4, PE là 2. Cần dự ít nhất 80% giờ học để được thi cuối kỳ.',
