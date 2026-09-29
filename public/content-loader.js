@@ -8,7 +8,7 @@
         if (window.COURSES[code] && Array.isArray(groups)) window.COURSES[code].groups = groups;
       }
       for (const [code, questions] of Object.entries(saved.quizzes)) {
-        if (window.QUIZZES[code] && Array.isArray(questions)) window.QUIZZES[code] = questions;
+        if (window.QUIZZES[code] && Array.isArray(questions)) window.QUIZZES[code] = window.mergeAtlasQuizzes(window.QUIZZES[code], questions);
       }
     }
   } catch (error) {

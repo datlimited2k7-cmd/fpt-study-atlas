@@ -93,6 +93,66 @@
         url: 'https://learn.microsoft.com/en-us/cpp/cpp/classes-and-structs-cpp?view=msvc-170'
       }
     ],
+    PRF192: [
+      {
+        title: 'Tính toán cơ bản',
+        note: 'Trong C, kiểu của toán hạng quyết định phép chia: hai số nguyên cho thương nguyên và bỏ phần lẻ về phía 0; chỉ cần một toán hạng là số thực thì phép chia được thực hiện ở kiểu số thực phù hợp. Kiểm tra chia cho 0 và giới hạn kiểu trước khi tính. Để đọc biểu thức dài, thêm ngoặc cho ý định tính thay vì chỉ dựa vào thứ tự ưu tiên toán tử.',
+        worked: 'Với int a=5,b=2, a/b bằng 2. Muốn 2.5, dùng (double)a/b hoặc a/2.0. Gán a/b vào biến double sau đó vẫn chỉ được 2.0.',
+        label: 'GNU C Language Manual · Division and Remainder',
+        url: 'https://www.gnu.org/software/c-intro-and-ref/manual/html_node/Division-and-Remainder.html'
+      },
+      {
+        title: 'Cấu trúc điều khiển',
+        note: 'Trước khi viết vòng lặp, xác định trạng thái ban đầu, điều kiện còn lặp và cách trạng thái tiến gần điểm dừng. Với for, điều kiện được kiểm tra trước mỗi lượt; nếu sai ngay từ đầu thì thân không chạy lần nào. Với bài đếm hoặc duyệt mảng, thử n=0, n=1 và phần tử cuối để phát hiện lỗi lệch một.',
+        worked: 'for(int i=0;i<n;i++) duyệt đúng các chỉ số 0…n−1 khi n≥0. Nếu n=0, điều kiện 0<n sai và vòng lặp không chạy.',
+        label: 'GNU C Language Manual · for Statement',
+        url: 'https://www.gnu.org/software/c-intro-and-ref/manual/html_node/for-Statement.html'
+      },
+      {
+        title: 'Module và hàm',
+        note: 'Tách một phép tính thành hàm có tham số và giá trị trả về giúp thử nó mà không cần nhập từ bàn phím. Nếu gọi hàm trước khi định nghĩa, đặt khai báo tương thích ở phía trên hoặc trong header. Tệp header báo cho trình biên dịch giao diện; khi tách nhiều tệp .c, bước liên kết vẫn phải nhận tệp chứa định nghĩa.',
+        worked: 'double square(double x){return x*x;} nhận 3.0 và trả 9.0. Nếu main nằm trước định nghĩa, thêm double square(double x); trước main.',
+        label: 'GNU C Language Manual · Forward Function Declarations',
+        url: 'https://www.gnu.org/software/c-intro-and-ref/manual/html_node/Forward-Function-Declarations.html'
+      },
+      {
+        title: 'Con trỏ',
+        note: 'Địa chỉ &x và giá trị *p là hai thứ khác nhau. Chỉ giải tham chiếu khi p trỏ tới một đối tượng còn sống và phù hợp kiểu. Con trỏ NULL là trạng thái “không trỏ tới đối tượng” có chủ ý; con trỏ chưa khởi tạo chứa giá trị không xác định. Khi truyền địa chỉ vào hàm, hàm có thể sửa đối tượng mà con trỏ trỏ tới.',
+        worked: 'int x=4; int *p=&x; *p=6; thì x bằng 6. Đặt p=NULL rồi dùng *p là thao tác không hợp lệ.',
+        label: 'GNU C Language Manual · Pointers',
+        url: 'https://www.gnu.org/software/c-intro-and-ref/manual/html_node/Pointers.html'
+      }
+    ],
+    SSA101: [
+      {
+        title: 'Học tập, trí nhớ và thi cử',
+        note: 'Đọc lại tài liệu tạo cảm giác quen, nhưng tự nhớ lại mà chưa xem đáp án giúp phát hiện phần còn hổng. Chia các lần ôn ra nhiều ngày giúp nhớ lâu hơn học dồn một đêm. Sau mỗi lần tự kiểm tra, xem lời giải, sửa lỗi và thử lại bằng câu hỏi khác để phân biệt hiểu cơ chế với chỉ nhớ lựa chọn.',
+        worked: 'Sau khi học một chủ đề, gấp tài liệu và viết 5 ý chính từ trí nhớ. Hôm sau làm 5 câu mới, ghi lại câu sai và ôn riêng phần đó sau vài ngày.',
+        label: 'Cornell Learning Strategies Center · Effective Study Strategies',
+        url: 'https://lsc.cornell.edu/how-to-study/studying-for-and-taking-exams/effective-study-strategies/'
+      },
+      {
+        title: 'Quản lý thời gian',
+        note: 'Chuyển mục tiêu mơ hồ thành việc cụ thể, có thời lượng và thời điểm bắt đầu. Lịch học nên dành chỗ cho bài tập, ôn cách quãng và thời gian dự phòng trước hạn nộp. Cuối tuần xem lại tiến độ thực tế để điều chỉnh; một lịch quá kín khiến việc trễ một buổi kéo theo cả kế hoạch.',
+        worked: 'Thay “học C tối nay” bằng “19:30–20:15 giải 3 bài vòng lặp; 20:15–20:30 so đáp án và ghi lỗi”. Đặt thêm 30 phút dự phòng trước hạn nộp.',
+        label: 'Cornell Learning Strategies Center · Time Management',
+        url: 'https://lsc.cornell.edu/wp-content/uploads/2015/10/A-Simple-Effective-Time-Management-System.pdf'
+      },
+      {
+        title: 'Hiểu biết thông tin',
+        note: 'Khi dùng một trang web hay bài viết làm căn cứ, kiểm tra tác giả/tổ chức, ngày cập nhật, loại nguồn và dẫn chứng. Đọc xem nội dung là dữ kiện, ý kiến hay quảng cáo; so chéo điểm quan trọng với nguồn độc lập. Nguồn phù hợp cho một câu hỏi thời sự có thể không phù hợp cho công thức toán hoặc quy định học vụ.',
+        worked: 'Nếu một bài đăng nói “quy chế thi đã đổi”, tìm văn bản hoặc thông báo chính thức của trường, kiểm tra ngày áp dụng rồi mới cập nhật kế hoạch ôn.',
+        label: 'Purdue OWL · Evaluating Sources of Information',
+        url: 'https://owl.purdue.edu/owl/research_and_citation/conducting_research/evaluating_sources_of_information/index.html'
+      },
+      {
+        title: 'AI và đạo đức học thuật',
+        note: 'AI có thể giúp gợi ý cấu trúc, giải thích lại và đặt câu hỏi tự luyện, nhưng kết quả cần kiểm chứng vì có thể sai hoặc thiếu nguồn. Không nhập thông tin cá nhân hay bài làm được bảo mật vào dịch vụ ngoài khi chưa được phép. Quy định cụ thể về cách sử dụng và ghi nhận AI phụ thuộc môn học và trường, nên kiểm tra hướng dẫn của giảng viên trước khi nộp.',
+        worked: 'Dùng AI để gợi ý ba cách giải một bài; tự làm lại, kiểm tra từng bước bằng tài liệu học, rồi ghi rõ việc đã dùng AI nếu yêu cầu nộp bài của lớp quy định.',
+        label: 'UNESCO · Guidance for Generative AI in Education and Research',
+        url: 'https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research?hub=83294'
+      }
+    ],
     SDI101m: [
       {
         title: '8. Mạch điện',

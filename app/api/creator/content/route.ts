@@ -1,8 +1,8 @@
 import { env } from "cloudflare:workers";
 import { isCreatorAuthenticated } from "../../../../lib/creator-auth";
 
-const COURSE_CODES = ["MAE101", "CEA201", "PRF193", "SDI101m"] as const;
-const MAX_BODY_LENGTH = 2_000_000;
+const COURSE_CODES = ["MAE101", "CEA201", "PRF193", "SDI101m", "PRF192", "SSA101"] as const;
+const MAX_BODY_LENGTH = 5_000_000;
 
 type RecordValue = Record<string, unknown>;
 
@@ -52,11 +52,15 @@ function validDocument(value: unknown): value is { courses: RecordValue; quizzes
           !isText(question.e, 2000, true) || !isText(question.s, 500, true) ||
           (question.chapter !== undefined && !isText(question.chapter, 200)) ||
           (question.topic !== undefined && !isText(question.topic, 200)) ||
+          (question.source !== undefined && question.source !== 'on-tap') ||
+          (question.richText !== undefined && typeof question.richText !== 'boolean') ||
+          (question.math !== undefined && typeof question.math !== 'boolean') ||
+          (question.alternativeAnswers !== undefined && (!Array.isArray(question.alternativeAnswers) || question.alternativeAnswers.length > options.length || question.alternativeAnswers.some(index => !Number.isSafeInteger(index) || index < 0 || index >= options.length))) ||
           (question.sourceId !== undefined && (!Number.isSafeInteger(question.sourceId) || (question.sourceId as number) < 1))) return false;
       questionCount++;
     }
   }
-  return lessonCount <= 1000 && questionCount <= 1500;
+  return lessonCount <= 1000 && questionCount <= 4000;
 }
 
 export async function PUT(request: Request) {
