@@ -9,6 +9,8 @@ Website học tập cho MAE101, CEA201, PRF192, PRF193, SSA101 và SDI101m. Bả
 | `public/data.js` | Danh sách môn, chương và nội dung tóm tắt gốc |
 | `public/lesson-guides.js` | Phần giải thích, ví dụ, lỗi thường gặp và bài tự luyện |
 | `public/open-study.js` | 24 ghi chú đào sâu từ học liệu mở, có ví dụ và liên kết theo chủ đề cho cả sáu môn |
+| `public/ssa101-learning.js` | 7 bài SSA101 từ PDF người học cung cấp; mỗi bài có ví dụ và tự kiểm tra |
+| `public/resources/learning-to-learn-online-vi.pdf` | Bản PDF tiếng Việt 10 trang để đọc cùng các bài SSA101 |
 | `public/quiz.js`, `public/quiz-expansions.js` | Câu hỏi trắc nghiệm và lời giải |
 | `public/quiz-slot08-09.js` | 16 câu tự luyện từ slide mô đun và hàm C của PRF193 |
 | `public/on-tap-sync.js` | Ngân hàng câu hỏi On Tap cho sáu môn |
@@ -33,6 +35,8 @@ Revision và SHA-256 nguồn nằm trong `public/on-tap-manifest.json`. Lệnh i
 PRF193 có thêm 8 bài và 16 câu tự luyện dựa trên `Slot_08_09_Modules_Functions.pptx` (71 slide). Các bài mới ghi phạm vi slide ở trường nguồn. Slide 68 ghi sai điều kiện năm nhuận; bản học trên website dùng công thức đúng và nêu rõ điểm cần tránh.
 
 Nguồn mở bổ sung gồm OpenStax Calculus/University Physics, bài giảng MIT OpenCourseWare 18.06SC/6.004/6.012, GNU C Language Manual, Microsoft Learn C++, Cornell Learning Strategies Center, Purdue OWL và UNESCO. Có 4 ghi chú áp dụng cho mỗi môn (24 tổng cộng). Mỗi ghi chú là lời giải thích và ví dụ mới, gắn trực tiếp vào bài học cùng liên kết tới nguồn cụ thể. Nguồn mở giúp đào sâu; syllabus FLM và slide đúng lớp vẫn quyết định phạm vi học và kiểm tra. PRF192 và SSA101 hiện là chỉ mục ôn tập từ On Tap, chưa đối chiếu syllabus lớp.
+
+SSA101 còn có 7 bài bổ sung từ bản tóm lược tiếng Việt *Learning to Learn Online* do người học cung cấp. PDF trên website được trình bày lại để loại các thẻ `<b>` hiện sai trong bản gốc; văn bản 10 trang đã được kiểm tra trùng nội dung sau khi bỏ thẻ. `scripts/clean-learning-pdf.py` tái tạo PDF này từ bản gốc tại máy người học. Các bài SSA101 có nguồn theo trang PDF và chưa được đối chiếu với syllabus lớp. Đã làm rõ công thức Faraday cho cuộn `N` vòng, độ lớn vận tốc trôi và điện dung tiếp giáp trong SDI101m.
 
 ## Chạy và kiểm tra
 

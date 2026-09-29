@@ -506,7 +506,7 @@
       },
       {
         details: `Từ thông qua vòng là Φ_B=∫B·dA. Suất điện động cảm ứng tuân theo định luật Faraday ε=−N dΦ_B/dt; dấu âm thể hiện định luật Lenz: dòng cảm ứng chống lại sự biến thiên từ thông gây ra nó. Với mạch xoay chiều hình sin, giá trị hiệu dụng V_rms=V_đỉnh/√2 và I_rms=I_đỉnh/√2. Mạch RLC lý tưởng có tần số cộng hưởng f₀=1/(2π√LC); điện trở làm giảm độ sắc cộng hưởng.`,
-        example: `Từ thông qua 10 vòng giảm đều 0,02 Wb trong 0,1 s: độ lớn suất điện động cảm ứng 2 V.`,
+        example: `Cuộn N=10 vòng, từ thông qua mỗi vòng giảm đều 0,02 Wb trong 0,1 s: |ε|=10×0,02/0,1=2 V.`,
         pitfall: `Dòng cảm ứng chống sự thay đổi từ thông, không nhất thiết chống lại từ trường ban đầu.`,
         practice: `Điện áp sin có đỉnh 10 V thì V_rms xấp xỉ bao nhiêu?`,
         answer: `10/√2≈7,07 V, với dạng sin thuần.`
@@ -561,7 +561,7 @@
         answer: `p giảm 100 lần theo np=n_i².`
       },
       {
-        details: `Hạt tải trôi do điện trường và khuếch tán do gradient nồng độ. Trong miền tuyến tính, độ lớn vận tốc trôi v_d=µE; dòng dẫn gồm phần electron và lỗ trống, với độ dẫn σ=q(nµ_n+pµ_p). Dòng khuếch tán xuất hiện dù không có điện trường khi n hoặc p biến thiên theo vị trí. Ở cân bằng của tiếp giáp p-n, dòng trôi và khuếch tán triệt tiêu về tổng dòng, chứ từng cơ chế không biến mất.`,
+        details: `Hạt tải trôi do điện trường và khuếch tán do gradient nồng độ. Trong miền tuyến tính, độ lớn vận tốc trôi |v_d|≈µ|E|; electron trôi ngược chiều điện trường, còn lỗ trống trôi cùng chiều. Dòng dẫn gồm phần electron và lỗ trống, với độ dẫn σ=q(nµ_n+pµ_p), trong đó q là độ lớn điện tích nguyên tố. Dòng khuếch tán xuất hiện dù không có điện trường khi n hoặc p biến thiên theo vị trí. Ở cân bằng của tiếp giáp p-n, dòng trôi và khuếch tán triệt tiêu về tổng dòng, chứ từng cơ chế không biến mất.`,
         example: `Với n=10¹⁶ cm⁻³, µ_n=1.000 cm²/(V·s), bỏ qua lỗ trống: σ≈1,6 (Ω·cm)⁻¹.`,
         pitfall: `Electron chuyển động trôi ngược chiều E, nhưng dòng quy ước do electron lại cùng chiều E.`,
         practice: `Trong vật liệu có nồng độ hạt tải đều và E=0, có dòng khuếch tán thuần không?`,
@@ -672,7 +672,7 @@
       lesson.pitfall = guide.pitfall;
       lesson.practice = guide.practice;
       lesson.answer = guide.answer;
-      lesson.source += '; ví dụ và bài tự luyện do nhóm biên soạn';
+      lesson.source += '; ví dụ và bài tự luyện do website biên soạn';
     });
   }
 })();
