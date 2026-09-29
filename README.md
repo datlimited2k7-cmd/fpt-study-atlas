@@ -1,6 +1,6 @@
 # FPT Study Atlas
 
-Website học tập cho MAE101, CEA201, PRF193 và SDI101m. Bản đang chạy: <https://fpt-study-atlas.luwy21643.workers.dev/atlas>.
+Website học tập cho MAE101, CEA201, PRF192, PRF193, SSA101 và SDI101m. Bản đang chạy: <https://fpt-study-atlas.luwy21643.workers.dev/atlas>.
 
 ## Cấu trúc chính
 
@@ -17,7 +17,17 @@ Website học tập cho MAE101, CEA201, PRF193 và SDI101m. Bản đang chạy: 
 
 `scripts/generate-base.mjs` kết hợp dữ liệu từ các tệp JavaScript thành `public/base-content.json`. Chạy lại lệnh này sau khi sửa bài học hoặc câu hỏi. Nội dung lưu từ chế độ sáng tạo trong D1 được ưu tiên hơn bản tĩnh khi có bản lưu.
 
-Ngân hàng CEA201 từ [On Tap](https://on-tap.pages.dev/quiz?s=cea201) được nhập theo xác nhận quyền sử dụng của chủ website này. Dữ liệu được sắp theo 17 chương, giữ mã câu gốc để mở trực tiếp, ví dụ `/atlas?course=CEA201#q=444`. Khi cần cập nhật nguồn, chạy `node scripts/import-on-tap-cea201.mjs`, xem lại thay đổi và chạy `node scripts/generate-base.mjs`. Đáp án và lời giải của On Tap là học liệu tự luyện; hãy đối chiếu với slide và syllabus khi ôn thi.
+Ngân hàng từ repo `chenbaode/on-tap` gồm CEA201 497, MAE101 669, PRF192 462, PRF193 300, SSA101 128 và SDI101m 50 câu. Giữ nguyên mã câu, chương/đề, lời giải, hình, công thức và đáp án thay thế. Hai lựa chọn trống trong nguồn PRF192 (câu 109 và 612) được ghi rõ `[Lựa chọn trống trong nguồn]`. Các bài học và câu hỏi Atlas tự biên soạn vẫn được giữ. PRF192 và SSA101 được bổ sung thành hai môn riêng.
+
+Cập nhật từ checkout đã xác minh của nguồn:
+
+```sh
+node scripts/import-on-tap.mjs ../on-tap
+node scripts/generate-base.mjs
+node scripts/test-on-tap.mjs
+```
+
+Revision và SHA-256 nguồn nằm trong `public/on-tap-manifest.json`. Lệnh import thay thế bản nhập được sinh tự động, không nối trùng sau mỗi lần chạy. Mã câu có thể mở trực tiếp bằng `/atlas?course=MAE101#q=8005`. Nội dung người sáng tạo đã lưu được ưu tiên; bộ nạp chỉ thêm câu On Tap có mã chưa tồn tại trong bản lưu. Không sửa hoặc xóa D1 khi triển khai. KaTeX được phục vụ từ `public/vendor/katex` cùng giấy phép MIT.
 
 PRF193 có thêm 8 bài và 16 câu tự luyện dựa trên `Slot_08_09_Modules_Functions.pptx` (71 slide). Các bài mới ghi phạm vi slide ở trường nguồn. Slide 68 ghi sai điều kiện năm nhuận; bản học trên website dùng công thức đúng và nêu rõ điểm cần tránh.
 

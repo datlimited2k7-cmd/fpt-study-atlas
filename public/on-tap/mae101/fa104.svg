@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 184" width="300" height="221">
+<style>
+.gr{stroke:#D5DCDE;stroke-width:1;fill:none}
+.ax{stroke:#5D6E73;stroke-width:1.1;fill:none}
+.cv{stroke:#16242B;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+text{fill:#16242B;font-family:"Times New Roman",Times,serif;font-size:13px}
+.v{font-style:italic}
+.lb{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+</style>
+<path class="gr" d="M14 16V176M34 16V176M54 16V176M74 16V176M94 16V176M114 16V176M134 16V176M154 16V176M174 16V176M194 16V176M214 16V176M234 16V176M14 176H234M14 156H234M14 136H234M14 116H234M14 96H234M14 76H234M14 56H234M14 36H234M14 16H234"/>
+<path class="ax" d="M14 96H240M234.5 92.5L240.5 96L234.5 99.5M34 176V10M30.5 15.5L34 9.5L37.5 15.5"/>
+<path class="ax" d="M31 56H37"/>
+<path class="cv" d="M34 76L74 36L94 36L174 156L214 136"/>
+<text class="v lb" x="21" y="20">y</text>
+<text class="lb" x="22" y="60.5">2</text>
+<text class="lb" x="23" y="110">0</text>
+<text class="lb" x="70.7" y="110">2</text><text class="lb" x="110.7" y="110">4</text><text class="lb" x="150.7" y="110">6</text><text class="lb" x="190.7" y="110">8</text>
+<text class="v lb" x="236" y="111">x</text>
+<rect x="133" y="37" width="56" height="16" fill="#fff"/>
+<text x="136" y="49"><tspan class="v">y</tspan> = <tspan class="v">f</tspan>(<tspan class="v">x</tspan>)</text>
+</svg>

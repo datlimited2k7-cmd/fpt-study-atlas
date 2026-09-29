@@ -6,3 +6,11 @@
 @media(max-width:720px){.ask-input #ai-button{width:100%}}
 .topbar-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}.creator-entry{display:inline-block;padding:10px 14px;border:1px solid #bdcce0;border-radius:10px;color:#173a57;background:#fff;text-decoration:none;font-size:.85rem;font-weight:800;white-space:nowrap}.creator-entry:hover{background:#e8f2f8}.content-warning{border-left:4px solid #dc9339;background:#fff4df;color:#634217;padding:10px 14px;border-radius:8px;margin:0 0 16px}
 .prompt-preview{display:block;width:100%;min-height:220px;resize:vertical;border:1px solid #c6d7e2;border-radius:10px;background:#f8fbfd;color:#29445f;padding:12px;font:inherit;line-height:1.55}
+
+.quiz-question { font-size: 1.15rem; font-weight: 600; margin: 1rem 0; line-height: 1.7; }
+.quiz-figure { display: block; max-width: 100%; max-height: 360px; object-fit: contain; margin: 1rem auto; }
+.quiz-card pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: .75rem; background: #f4f4f6; text-align: left; }
+.quiz-card table { border-collapse: collapse; max-width: 100%; margin: .75rem 0; font-size: .9rem; }
+.quiz-card td,.quiz-card th { border: 1px solid #d8dae0; padding: .3rem .5rem; }
+.quiz-card .katex-display { overflow-x: auto; overflow-y: hidden; padding: .3rem 0; }
+.quiz-card .option { overflow-wrap: anywhere; }
